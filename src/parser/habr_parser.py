@@ -29,7 +29,7 @@ CATEGORY_MAP = {
     "Менеджмент": ["pm", "productpm", "growthhacking", "sales", "project-management"],
     "Научпоп": ["popular_science", "futurenow", "brain", "antikvariat"],
     "Облачные технологии": ["cloud_services", "docker", "kubernetes", "aws"],
-    "Базы данных": ["dwh", "postgresql", "mysql", "mongodb"],
+    "Базы данных": ["db_admins", "dwh", "postgresql", "mysql", "mongodb"],
     "Дизайн": ["analysis_design", "apps_design", "design"],
     "Разное": ["asterisk", "health", "interviews", "read"]
 }
