@@ -20,7 +20,7 @@ HEADERS = {
 }
 
 CATEGORY_MAP = {
-    "Программирование": ["python", "c++", "go", "javascript", "typescript", "react", "postgresql", "c#"],
+    "Программирование": ["programming", "python", "c++", "go", "javascript", "typescript", "react", "postgresql", "c#"],
     "Искусственный Интеллект": ["artificial_intelligence", "machine_learning", "research", "neural-networks", "bigdata"],
     "Кибербезопасность": ["infosecurity", "reverse-engineering", "cryptography", "pentest"],
     "Веб-разработка": ["webdev", "weban", "frontend", "backend", "nodejs", "typescript", "reactjs"],
@@ -31,11 +31,11 @@ CATEGORY_MAP = {
     "Облачные технологии": ["cloud_services", "docker", "kubernetes", "aws"],
     "Базы данных": ["dwh", "postgresql", "mysql", "mongodb"],
     "Дизайн": ["analysis_design", "apps_design", "design"],
-    "Разное": ["asterisk", "health", "interviews"]
+    "Разное": ["asterisk", "health", "interviews", "read"]
 }
 
 REQUEST_DELAY = 0.77
-MAX_PAGES_PER_HUB = 100
+MAX_PAGES_PER_HUB = 1000
 TARGET_ARTICLES_PER_CATEGORY = 1000
 
 
@@ -207,7 +207,7 @@ def main():
 
                     try:
                         # Ограничиваем количество статей, получаемых из одного хаба
-                        articles = get_articles_from_hub(hub_url, min(needed - collected, 50), session)
+                        articles = get_articles_from_hub(hub_url, min(needed - collected, 300), session)
                         new_articles = [url for url in articles if url not in processed_urls]
                         if not new_articles:
                             continue
