@@ -35,6 +35,7 @@ CATEGORY_MAP = {
 }
 
 REQUEST_DELAY = 0.77
+ARTICLES_PER_HUB = 300
 MAX_PAGES_PER_HUB = 1000
 TARGET_ARTICLES_PER_CATEGORY = 1000
 
@@ -207,7 +208,7 @@ def main():
 
                     try:
                         # Ограничиваем количество статей, получаемых из одного хаба
-                        articles = get_articles_from_hub(hub_url, min(needed - collected, 300), session)
+                        articles = get_articles_from_hub(hub_url, min(needed - collected, ARTICLES_PER_HUB), session)
                         new_articles = [url for url in articles if url not in processed_urls]
                         if not new_articles:
                             continue
