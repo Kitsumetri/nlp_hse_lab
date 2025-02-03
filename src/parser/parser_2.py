@@ -8,10 +8,10 @@ import regex as re
 
 # Updated settings
 # categories = ['world', 'business', 'technology', 'markets']
-categories = ['world']
+categories = ['technology']
 articles_per_category = 1000
 articles_per_request = 20
-output_links_file = 'data/reuters_links.jsonl'
+output_links_file = 'data/reuters_links_world.jsonl'
 output_articles_file = 'data/reuters_articles.json'
 
 # Modern browser headers template
@@ -150,14 +150,14 @@ class ReutersScraper:
         
     #     return []
 
-    def parse_articles(self):
+    def parse_articles(self, a, b):
         """Updated parsing with proper text/tag handling"""
         articles_data = []
         
         with open(output_links_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
         
-        for line in lines[:200]:
+        for line in lines[a:b]:
             article_info = json.loads(line)
             url = article_info['url']
             category = article_info['category']
@@ -189,7 +189,7 @@ class ReutersScraper:
                     "category": category.replace('-', '_'),
                     "tags": tags,
                     "text": text.strip()
-                }
+                }                    
                 
                 articles_data.append(article_entry)
                 print(f"Successfully parsed: {title[:50]}...")
@@ -197,9 +197,9 @@ class ReutersScraper:
             except Exception as e:
                 print(f"Error parsing {url}: {e}")
                 continue
-        
-        with open(output_articles_file, 'w', encoding='utf-8') as f:
-            json.dump(articles_data, f, ensure_ascii=False, indent=4)
+                
+        with open(output_articles_file, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(articles_data, ensure_ascii=False, indent = 4) + '\n')
         
     def _remove_trailing_junk(self, text):
         """Remove common trailing elements like sign-up prompts"""
@@ -241,4 +241,12 @@ class ReutersScraper:
 if __name__ == '__main__':
     scraper = ReutersScraper()
     scraper.fetch_links()
-    scraper.parse_articles()
+    scraper.parse_articles(0,200)
+    scraper = ReutersScraper()
+    scraper.parse_articles(201,400)    
+    scraper = ReutersScraper()
+    scraper.parse_articles(401,600)
+    scraper = ReutersScraper()
+    scraper.parse_articles(601,800)
+    scraper = ReutersScraper()
+    scraper.parse_articles(601,800)
