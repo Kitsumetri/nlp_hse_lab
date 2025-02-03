@@ -2,15 +2,18 @@ import requests
 import json
 import time
 import random
+import logging
+from src.logger import setup_logger
 from urllib.parse import quote
 from bs4 import BeautifulSoup
 import regex as re
 
 # Updated settings
 # categories = ['world', 'business', 'technology', 'markets']
-categories = ['world']
-articles_per_category = 1000
+categories = ['business']
+articles_per_category = 400
 articles_per_request = 20
+connection_batch_size = 100
 output_links_file = 'data/reuters_links.jsonl'
 output_articles_file = 'data/reuters_articles.json'
 
@@ -51,7 +54,7 @@ class ReutersScraper:
         if category:
             headers['Referer'] = f'https://www.reuters.com/{category}/'
         
-        time.sleep(random.uniform(3, 5))  # Randomized delay
+        time.sleep(random.uniform(0.5, 2))
         
         try:
             response = self.session.get(url, headers=headers)
@@ -59,7 +62,7 @@ class ReutersScraper:
             return response
         except requests.exceptions.HTTPError as e:
             if e.response.status_code == 403:
-                print("Blocking detected - regenerating session...")
+                logging.warning("Blocking detected - regenerating session...")
                 self._init_session()
                 return self._make_request(url, category)
             raise
@@ -83,7 +86,7 @@ class ReutersScraper:
                 url = base_api_url + encoded_query
                 
                 try:
-                    response = self._make_request(url)
+                    response = self._make_request(url, category)
                     data = response.json()
                     articles = data.get('result', {}).get('articles', [])
                     
@@ -103,14 +106,14 @@ class ReutersScraper:
                             f.write(json.dumps(article_data, ensure_ascii=False) + '\n')
                         
                         collected += 1
-                        print(f"Collected {collected}/{articles_per_category} in {category}")
+                        logging.info(f"Collected {collected}/{articles_per_category} in {category}")
                         if collected >= articles_per_category:
                             break
                     
                     offset += articles_per_request
                     
                 except Exception as e:
-                    print(f"Error fetching {category}: {e}")
+                    logging.error(f"Error fetching {category}: {e}")
                     break
 
     def _extract_article_content(self, soup):
@@ -157,7 +160,7 @@ class ReutersScraper:
         with open(output_links_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
         
-        for line in lines[:200]:
+        for idx, line in enumerate(lines):
             article_info = json.loads(line)
             url = article_info['url']
             category = article_info['category']
@@ -192,14 +195,25 @@ class ReutersScraper:
                 }
                 
                 articles_data.append(article_entry)
-                print(f"Successfully parsed: {title[:50]}...")
+                logging.info(f"Successfully parsed: {title[:50]} ({idx+1}/{articles_per_category})...")
                 
             except Exception as e:
-                print(f"Error parsing {url}: {e}")
+                logging.error(f"Error parsing {url}: {e}")
                 continue
+
+            if idx % connection_batch_size == 0:
+                logging.info("Safe reconnecting...")
+                self._init_session()
+
+                with open(output_articles_file, 'a', encoding='utf-8') as f:
+                    json.dump(articles_data, f, ensure_ascii=False, indent=4)
+                    articles_data.clear()
+                    logging.info(f"Saved {idx+1} articles from {articles_per_category*len(categories)}")
         
-        with open(output_articles_file, 'w', encoding='utf-8') as f:
+        with open(output_articles_file, 'a', encoding='utf-8') as f:
             json.dump(articles_data, f, ensure_ascii=False, indent=4)
+            articles_data.clear()
+            logging.info(f"All {articles_per_category * len(categories)} articles saved!")
         
     def _remove_trailing_junk(self, text):
         """Remove common trailing elements like sign-up prompts"""
@@ -239,6 +253,13 @@ class ReutersScraper:
         return []
 
 if __name__ == '__main__':
+    with open(output_articles_file, 'w', encoding='utf-8') as f:
+        f.write("")
+    
+    with open(output_links_file, 'w', encoding='utf-8') as f:
+        f.write("")
+    
+    setup_logger(logging.INFO, stdout_log=True, file_log=False)
     scraper = ReutersScraper()
     scraper.fetch_links()
     scraper.parse_articles()
