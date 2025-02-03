@@ -1,219 +1,165 @@
 import requests
-import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup
 import json
 import time
 import random
-from datetime import datetime, timezone
-from urllib.parse import urlparse
+from urllib.parse import quote
+from bs4 import BeautifulSoup
 
-# Configuration
-USER_AGENTS = [
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15'
-]
+# Updated settings
+categories = ['world', 'business', 'technology', 'politics']
+articles_per_category = 20
+articles_per_request = 20
+output_links_file = 'reuters_links.jsonl'
+output_articles_file = 'reuters_articles.json'
 
-CATEGORY_MAP = {
-    'science': ['science', 'environment', 'climate'],
-    'technology': ['technology', 'tech', 'innovation'],
-    'business': ['business', 'economy', 'markets'],
-    'entertainment': ['entertainment', 'arts', 'culture'],
-    'other': ['other'],
+# Modern browser headers template
+HEADERS_TEMPLATE = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'Connection': 'keep-alive',
+    'Cache-Control': 'max-age=0',
+    'DNT': '1'
 }
 
-SITEMAP_INDEX = 'https://www.bbc.com/sitemaps/https-index-com-news.xml'
-MAX_ARTICLES = 1000
-REQUEST_DELAY = (1, 3)
-NS = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+class ReutersScraper:
+    def __init__(self):
+        self.session = requests.Session()
+        self._init_session()
 
-session = requests.Session()
-session.headers.update({'User-Agent': random.choice(USER_AGENTS)})
-
-def fetch_xml(url):
-    """Fetch XML content with error handling"""
-    try:
-        response = session.get(url, timeout=15)
-        response.raise_for_status()
-        return response.content
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching {url}: {str(e)}")
-        return None
-
-def parse_sitemap_index(index_url):
-    """Parse sitemap index and return valid news sitemaps"""
-    print(f"Processing index: {index_url}")
-    content = fetch_xml(index_url)
-    if not content:
-        return []
-    
-    try:
-        root = ET.fromstring(content)
-        return [elem.text for elem in root.findall('.//sm:sitemap/sm:loc', NS)]
-    except ET.ParseError as e:
-        print(f"XML parse error: {str(e)}")
-        return []
-
-def process_news_sitemap(sitemap_url):
-    """Extract recent news URLs from a news sitemap"""
-    print(f"Processing news sitemap: {sitemap_url}")
-    content = fetch_xml(sitemap_url)
-    if not content:
-        return []
-    
-    try:
-        root = ET.fromstring(content)
-        urls = []
+    def _init_session(self):
+        """Initialize session with proper cookies and headers"""
+        # First request to establish basic cookies
+        self.session.get('https://www.reuters.com/', headers=HEADERS_TEMPLATE)
+        time.sleep(random.uniform(1, 2))
         
-        for url_elem in root.findall('.//sm:url', NS):
-            loc = url_elem.find('sm:loc', NS).text
-            lastmod = url_elem.find('sm:lastmod', NS)
+        # Second request to simulate browser warmup
+        self.session.get('https://www.reuters.com/politics/', headers=HEADERS_TEMPLATE)
+        time.sleep(random.uniform(1, 2))
+
+    def _make_request(self, url, category=None):
+        """Make a request with proper headers and delays"""
+        headers = HEADERS_TEMPLATE.copy()
+        if category:
+            headers['Referer'] = f'https://www.reuters.com/{category}/'
+        
+        time.sleep(random.uniform(1.5, 3.5))  # Randomized delay
+        
+        try:
+            response = self.session.get(url, headers=headers)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 403:
+                print("Blocking detected - regenerating session...")
+                self._init_session()
+                return self._make_request(url, category)
+            raise
+
+    def fetch_links(self):
+        """Collect article links using the API"""
+        base_api_url = 'https://www.reuters.com/pf/api/v3/content/fetch/articles-by-section-alias-or-id-v1?query='
+        
+        for category in categories:
+            offset = 0
+            collected = 0
             
-            if lastmod is not None:
+            while collected < articles_per_category:
+                query = {
+                    "section_id": f"/{category}",
+                    "size": articles_per_request,
+                    "offset": offset,
+                    "website": "reuters"
+                }
+                encoded_query = quote(json.dumps(query))
+                url = base_api_url + encoded_query
+                
                 try:
-                    # Parse as UTC datetime
-                    article_date = datetime.fromisoformat(
-                        lastmod.text.replace('Z', '+00:00')
-                    ).astimezone(timezone.utc)
+                    response = self._make_request(url)
+                    data = response.json()
+                    articles = data.get('result', {}).get('articles', [])
                     
-                    # Get current UTC time
-                    now_utc = datetime.now(timezone.utc)
+                    if not articles:
+                        break
                     
-                    # Compare both timezone-aware datetimes
-                    if article_date > now_utc:
-                        continue
-                except ValueError:
-                    pass
-                
-            urls.append(loc)
+                    for article in articles:
+                        article_url = 'https://www.reuters.com' + article['canonical_url']
+                        article_data = {
+                            'url': article_url,
+                            'category': category,
+                            'title': article.get('title', ''),
+                            'tags': [tag['slug'] for tag in article.get('taxonomy', {}).get('tags', [])]
+                        }
+                        
+                        with open(output_links_file, 'a', encoding='utf-8') as f:
+                            f.write(json.dumps(article_data, ensure_ascii=False) + '\n')
+                        
+                        collected += 1
+                        print(f"Collected {collected}/{articles_per_category} in {category}")
+                        if collected >= articles_per_category:
+                            break
+                    
+                    offset += articles_per_request
+                    
+                except Exception as e:
+                    print(f"Error fetching {category}: {e}")
+                    break
+
+    def parse_articles(self):
+        """Parse individual articles with enhanced protection bypass"""
+        articles_data = []
         
-        return urls
-    except ET.ParseError as e:
-        print(f"XML parse error: {str(e)}")
-        return []
-
-def categorize_url(url):
-    """Categorize URL using multiple matching strategies"""
-    path = urlparse(url).path.lower()
-    
-    # Direct category matching
-    for category, keywords in CATEGORY_MAP.items():
-        if any(kw in path for kw in keywords):
-            return category
-    
-    # Structural analysis for news URLs
-    parts = [p for p in path.split('/') if p]
-    if len(parts) >= 3 and parts[1] == 'news':
-        if parts[2].isdigit():  # Article ID format
-            return parts[3] if len(parts) > 3 else 'general'
-        return parts[2]
-    
-    return 'other'
-
-def collect_articles():
-    """Main collection function with progress tracking"""
-    articles = {cat: [] for cat in CATEGORY_MAP}
-    articles['other'] = []
-    
-    # Step 1: Get all news sitemaps
-    sitemaps = parse_sitemap_index(SITEMAP_INDEX)
-    print(f"Found {len(sitemaps)} news sitemaps")
-    
-    # Step 2: Process sitemaps until we reach target counts
-    for sitemap_url in sitemaps:
-        # if all(len(v) >= MAX_ARTICLES for v in articles.values() if v is not 'other'):
-        if all(len(v) >= MAX_ARTICLES for v in articles.values()):
-            break
+        with open(output_links_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+        
+        for line in lines:
+            article_info = json.loads(line)
+            url = article_info['url']
+            category = article_info['category']
+            tags = article_info['tags']
             
-        urls = process_news_sitemap(sitemap_url)
-        random.shuffle(urls)  # Avoid detection patterns
-        
-        for url in urls:
-            category = categorize_url(url)
-            if category in articles and len(articles[category]) < MAX_ARTICLES:
-                articles[category].append(url)
-                
-            # Early exit check
-            # if all(len(v) >= MAX_ARTICLES for v in articles.values() if v is not 'other'):
-            if all(len(v) >= MAX_ARTICLES for v in articles.values()):
-                break
-            
-        time.sleep(random.uniform(*REQUEST_DELAY))
-    
-    print("\nCollection results:")
-    for cat, urls in articles.items():
-        print(f"{cat.capitalize()}: {len(urls)} URLs")
-    
-    return articles
-
-def parse_article(url):
-    """Parse article content with multiple fallback strategies"""
-    try:
-        response = session.get(url, timeout=15)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'lxml')
-        
-        # Extract JSON-LD metadata
-        metadata = {}
-        script = soup.find('script', type='application/ld+json')
-        if script:
             try:
-                metadata = json.loads(script.string)
-                if isinstance(metadata, list):
-                    metadata = metadata[0]
-            except json.JSONDecodeError:
-                pass
+                response = self._make_request(url, category)
+                soup = BeautifulSoup(response.text, 'html.parser')
+                
+                # Extract title
+                title = soup.find('h1').text.strip() if soup.find('h1') else article_info['title']
+                
+                # Extract article body
+                body = soup.select_one('div.article-body__content')
+                text = ' '.join([p.text.strip() for p in body.find_all('p')]) if body else ''
+                
+                # Fallback tag extraction
+                if not tags:
+                    meta_keywords = soup.find('meta', {'name': 'keywords'})
+                    if meta_keywords:
+                        tags = [tag.strip() for tag in meta_keywords.get('content', '').split(',')]
+                
+                article_entry = {
+                    "article_id": url,
+                    "title": title,
+                    "category": category.replace('-', '_'),
+                    "tags": ",".join(tags),
+                    "text": text.strip()
+                }
+                
+                articles_data.append(article_entry)
+                print(f"Successfully parsed: {title[:60]}...")
+                
+            except Exception as e:
+                print(f"Error parsing {url}: {e}")
+                continue
         
-        # Title extraction
-        title = metadata.get('headline') or soup.find('h1').get_text(strip=True) if soup.find('h1') else ''
-        
-        # Main content extraction
-        body = soup.find('main', {'id': 'main-content'}) or soup.find('article')
-        paragraphs = body.find_all('p') if body else []
-        text = '\n'.join([p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True)])
-        
-        # Tags extraction
-        tags = metadata.get('keywords', [])
-        if not tags:
-            tags_section = soup.find('div', {'data-component': 'topic-list'})
-            if tags_section:
-                tags = [tag.get_text(strip=True) for tag in tags_section.find_all('li')]
-        
-        return {
-            "article_id": url,
-            "title": title,
-            "category": categorize_url(url),
-            "tags": ", ".join(tags),
-            "text": text,
-            "source": "BBC News",
-            "date_published": metadata.get('datePublished', '')
-        }
-    
-    except Exception as e:
-        print(f"Error processing {url}: {str(e)}")
-        return None
+        with open(output_articles_file, 'w', encoding='utf-8') as f:
+            json.dump(articles_data, f, ensure_ascii=False, indent=4)
 
-def main():
-    # Collect articles
-    articles = collect_articles()
-    
-    # Process and save articles
-    final_data = []
-    for category in CATEGORY_MAP:
-        print(f"\nProcessing {len(articles[category])} {category} articles...")
-        for i, url in enumerate(articles[category], 1):
-            article = parse_article(url)
-            if article:
-                final_data.append(article)
-                print(f"Processed {i}/{len(articles[category])}: {article['title'][:50]}...")
-            
-            time.sleep(random.uniform(*REQUEST_DELAY))  # Respectful delay
-    
-    # Save results
-    filename = f"bbc_news_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(final_data, f, ensure_ascii=False, indent=2)
-    
-    print(f"\nSuccessfully saved {len(final_data)} articles to {filename}")
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    scraper = ReutersScraper()
+    scraper.fetch_links()
+    scraper.parse_articles()
