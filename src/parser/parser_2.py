@@ -7,9 +7,10 @@ from bs4 import BeautifulSoup
 import regex as re
 
 # Updated settings
-categories = ['world', 'business', 'technology', 'markets']
-articles_per_category = 10
-articles_per_request = 10
+# categories = ['world', 'business', 'technology', 'markets']
+categories = ['world']
+articles_per_category = 1000
+articles_per_request = 20
 output_links_file = 'reuters_links.jsonl'
 output_articles_file = 'reuters_articles.json'
 
