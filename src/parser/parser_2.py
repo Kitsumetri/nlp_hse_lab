@@ -9,8 +9,8 @@ import regex as re
 # Updated settings
 # categories = ['world', 'business', 'technology', 'markets']
 categories = ['world']
-articles_per_category = 1000
-articles_per_request = 20
+articles_per_category = 1
+articles_per_request = 1
 output_links_file = 'data/reuters_links.jsonl'
 output_articles_file = 'data/reuters_articles.json'
 
@@ -39,11 +39,11 @@ class ReutersScraper:
         """Initialize session with proper cookies and headers"""
         # First request to establish basic cookies
         self.session.get('https://www.reuters.com/', headers=HEADERS_TEMPLATE)
-        time.sleep(random.uniform(1, 2))
+        time.sleep(random.uniform(3, 5))
         
         # Second request to simulate browser warmup
-        self.session.get('https://www.reuters.com/politics/', headers=HEADERS_TEMPLATE)
-        time.sleep(random.uniform(1, 2))
+        self.session.get('https://www.reuters.com/world/', headers=HEADERS_TEMPLATE)
+        time.sleep(random.uniform(3, 5))
 
     def _make_request(self, url, category=None):
         """Make a request with proper headers and delays"""
@@ -51,7 +51,7 @@ class ReutersScraper:
         if category:
             headers['Referer'] = f'https://www.reuters.com/{category}/'
         
-        time.sleep(random.uniform(1.5, 3.5))  # Randomized delay
+        time.sleep(random.uniform(3, 5))  # Randomized delay
         
         try:
             response = self.session.get(url, headers=headers)
@@ -157,7 +157,7 @@ class ReutersScraper:
         with open(output_links_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
         
-        for line in lines:
+        for line in lines[:200]:
             article_info = json.loads(line)
             url = article_info['url']
             category = article_info['category']
