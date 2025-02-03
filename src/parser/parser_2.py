@@ -120,7 +120,7 @@ class ReutersScraper:
         })
         
         clean_text = []
-        for p in paragraphs:
+        for p in paragraphs[:2]:
             # Skip non-content containers
             if p.find(['aside', 'figure', 'div[data-testid="signup-prompt"]']):
                 continue
