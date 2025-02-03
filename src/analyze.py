@@ -10,20 +10,7 @@ import seaborn as sns
 
 from faker import Faker
 
-# Импорт spaCy и NLTK (для стоп-слов, если потребуется)
-import spacy
-import nltk
 
-# Если стоп-слова NLTK понадобятся, раскомментируйте следующую строку:
-# nltk.download("stopwords")
-
-# Задаём стиль для графиков
-sns.set(style="whitegrid", font_scale=1.1)
-
-
-# ======================================
-# 1. Генерация JSON-датасета с 4000+ записями
-# ======================================
 def generate_news_dataset(filename="news_dataset.json"):
     """
     Генерирует JSON-файл с новостными статьями в формате:
@@ -47,9 +34,9 @@ def generate_news_dataset(filename="news_dataset.json"):
     # Задаём категории и число записей для каждой
     categories_counts = {
         "science_and_environment": 1000,
-        "technology": 1500,
-        "politics": 800,
-        "health": 700
+        "technology": 1250,
+        "politics": 1200,
+        "health": 996,
     }
 
     # Возможные теги для каждой категории
@@ -107,9 +94,6 @@ def generate_news_dataset(filename="news_dataset.json"):
     print(f"Сгенерировано {len(data)} записей и сохранено в {filename}")
 
 
-# ======================================
-# 2. Базовый анализ данных
-# ======================================
 def basic_text_analysis(df):
     """
     Выводит базовую статистику:
@@ -135,7 +119,7 @@ def basic_text_analysis(df):
     plt.ylabel("Количество статей")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("articles_by_category.png")
+    # plt.savefig("articles_by_category.png")
     plt.show()
 
     # Гистограмма длины текстов
@@ -145,7 +129,7 @@ def basic_text_analysis(df):
     plt.xlabel("Количество слов")
     plt.ylabel("Частота")
     plt.tight_layout()
-    plt.savefig("text_length_distribution.png")
+    # plt.savefig("text_length_distribution.png")
     plt.show()
 
     # Boxplot длины текстов по категориям
@@ -156,13 +140,10 @@ def basic_text_analysis(df):
     plt.ylabel("Количество слов")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("text_length_by_category.png")
+    # plt.savefig("text_length_by_category.png")
     plt.show()
 
 
-# ======================================
-# 3. Предобработка текстов с использованием spaCy
-# ======================================
 def preprocess_texts(text_series, nlp):
     """
     Выполняет предобработку текстов:
@@ -232,7 +213,7 @@ def analyze_keywords_by_category(df, processed_texts):
         plt.ylabel("Частота")
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig(f"top_keywords_{cat}.png")
+        # plt.savefig(f"top_keywords_{cat}.png")
         plt.show()
 
     # Сравнительный график коэффициента разнообразия по категориям
@@ -244,54 +225,5 @@ def analyze_keywords_by_category(df, processed_texts):
     plt.ylabel("Доля уникальных слов")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("keyword_diversity_ratio.png")
+    # plt.savefig("keyword_diversity_ratio.png")
     plt.show()
-
-
-# ======================================
-# Основная функция
-# ======================================
-def main():
-    dataset_filename = os.path.join("data", "news_dataset.json")
-    
-    # Если датасет не существует – генерируем его
-    if not os.path.exists(dataset_filename):
-        generate_news_dataset(filename=dataset_filename)
-    else:
-        print(f"Файл {dataset_filename} уже существует. Пропускаем генерацию.")
-
-    # Загружаем данные из JSON в DataFrame
-    with open(dataset_filename, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    df = pd.DataFrame(data)
-    
-    # Базовый анализ данных
-    basic_text_analysis(df)
-
-    # Загрузка модели spaCy (en_core_web_sm)
-    try:
-        nlp = spacy.load("en_core_web_sm")
-    except Exception as e:
-        print("Ошибка загрузки модели spaCy. Убедитесь, что en_core_web_sm установлен.")
-        return
-
-    print("\nПредобработка текстов (токенизация, лемматизация, удаление стоп-слов и пунктуации)...")
-    processed_texts = preprocess_texts(df["text"], nlp)
-
-    # Анализ ключевых слов по категориям
-    analyze_keywords_by_category(df, processed_texts)
-
-    # Возможные выводы (пример):
-    conclusions = """
-    Возможные выводы из анализа:
-    1. Распределение статей по категориям может быть неравномерным, что следует учитывать при дальнейшем анализе.
-    2. Статистика длины текстов и заголовков помогает выявить аномалии (очень короткие или длинные статьи).
-    3. Предобработка (токенизация, лемматизация, удаление стоп-слов) существенно приводит тексты к единому виду.
-    4. Анализ ключевых слов показывает, какие термины доминируют в каждой категории. Коэффициент разнообразия (уникальные/все слова) позволяет оценить лексическую вариативность текстов – более высокий показатель говорит о большем разнообразии используемых терминов.
-    5. Топ-10 ключевых слов для каждой категории может быть использован для дальнейшего feature engineering или тематического анализа.
-    """
-    print(conclusions)
-
-
-if __name__ == "__main__":
-    main()
