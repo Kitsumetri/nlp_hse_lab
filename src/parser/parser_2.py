@@ -9,8 +9,8 @@ import regex as re
 # Updated settings
 # categories = ['world', 'business', 'technology', 'markets']
 categories = ['world']
-articles_per_category = 1
-articles_per_request = 1
+articles_per_category = 1000
+articles_per_request = 20
 output_links_file = 'data/reuters_links.jsonl'
 output_articles_file = 'data/reuters_articles.json'
 
