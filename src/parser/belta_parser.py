@@ -26,10 +26,7 @@ LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 logging.basicConfig(
     level=logging.INFO,
     format=LOG_FORMAT,
-    handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler("parsing.log", encoding="utf-8")
-    ]
+    handlers=[logging.StreamHandler()]
 )
 
 # ==================== Функции ====================
