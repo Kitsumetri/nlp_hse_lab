@@ -9,9 +9,9 @@ from bs4 import BeautifulSoup
 import regex as re
 
 # Updated settings
-# categories = ['world', 'business', 'technology', 'markets']
-categories = ['business']
-articles_per_category = 400
+categories = ['world', 'business', 'technology', 'markets']
+# categories = ['business']
+articles_per_category = 1000
 articles_per_request = 20
 connection_batch_size = 100
 output_links_file = 'data/reuters_links.jsonl'
