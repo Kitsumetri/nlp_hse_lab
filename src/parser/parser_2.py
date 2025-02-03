@@ -11,8 +11,8 @@ import regex as re
 categories = ['world']
 articles_per_category = 1000
 articles_per_request = 20
-output_links_file = 'reuters_links.jsonl'
-output_articles_file = 'reuters_articles.json'
+output_links_file = 'data/reuters_links.jsonl'
+output_articles_file = 'data/reuters_articles.json'
 
 # Modern browser headers template
 HEADERS_TEMPLATE = {
