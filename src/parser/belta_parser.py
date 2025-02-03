@@ -12,7 +12,8 @@ from requests.adapters import HTTPAdapter, Retry
 BASE_URL = "https://www.belta.by/"
 # Добавлены категории: economics, tech, culture, incident, regions, politics
 CATEGORIES = ["economics/", "tech/", "culture/", "incident/", "regions/", "politics/"]
-MAX_PAGES = 100             # Максимальное число страниц для парсинга в каждой категории
+MAX_PAGES = 50              # Максимальное число страниц для парсинга в каждой категории
+TARGET_COUNT = 1000         # Целевое количество статей для каждой категории
 OUTPUT_FILE = Path("data/belta_articles.json")
 SAVE_BATCH = 100            # Сохранять данные каждые 100 статей
 
@@ -26,7 +27,9 @@ LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 logging.basicConfig(
     level=logging.INFO,
     format=LOG_FORMAT,
-    handlers=[logging.StreamHandler()]
+    handlers=[
+        logging.StreamHandler(),
+    ]
 )
 
 # ==================== Функции ====================
@@ -103,12 +106,20 @@ def save_data(catalog: list, output_file: Path):
     logging.info(f"Данные сохранены в {output_file} (всего статей: {len(catalog)})")
 
 
-def parse_category(session: requests.Session, category: str, catalog: list) -> None:
+def parse_category(session: requests.Session, category: str, catalog: list) -> int:
     """
     Парсит статьи для заданной категории и добавляет их в общий список catalog.
-    Каждые SAVE_BATCH статей данные сохраняются в файл.
+    Процесс останавливается, как только накопится TARGET_COUNT статей для этой категории.
+    
+    Возвращает количество статей, спарсенных для категории.
     """
+    cat_count = 0
     for page in range(MAX_PAGES):
+        # Если уже достигнуто целевое количество, прекращаем парсинг этой категории.
+        if cat_count >= TARGET_COUNT:
+            logging.info(f"Достигнуто {cat_count} статей для категории '{category.rstrip('/')}' (цель: {TARGET_COUNT}).")
+            break
+
         # Формирование URL: первая страница без "page/", далее с указанием номера страницы.
         page_url = BASE_URL + category if page == 0 else BASE_URL + category + "page/" + str(page)
         logging.info(f"Парсинг категории '{category}', страница {page}: {page_url}")
@@ -137,16 +148,21 @@ def parse_category(session: requests.Session, category: str, catalog: list) -> N
 
         # Обработка каждой найденной статьи
         for link, title in zip(links, titles):
+            # Если уже достигнуто целевое количество, прерываем обработку
+            if cat_count >= TARGET_COUNT:
+                break
+
             article_text, article_tags = parse_article(session, link)
             article_data = {
-                "article_id": BASE_URL[:-1] + link,
+                "article_id": link,
                 "title": title,
                 "category": category.rstrip("/"),
                 "tags": article_tags,
                 "text": article_text
             }
             catalog.append(article_data)
-            logging.debug(f"Добавлена статья: {title}")
+            cat_count += 1
+            logging.debug(f"Добавлена статья: {title} ({cat_count} из {TARGET_COUNT})")
 
             # Сохранение данных каждые SAVE_BATCH статей
             if len(catalog) % SAVE_BATCH == 0:
@@ -155,25 +171,24 @@ def parse_category(session: requests.Session, category: str, catalog: list) -> N
             # Небольшая случайная задержка, чтобы не нагружать сервер
             time.sleep(random.uniform(0.5, 1.5))
 
-        logging.info(f"Страница {page} категории '{category}' обработана, найдено {len(links)} статей.")
+        logging.info(f"Страница {page} категории '{category.rstrip('/')}' обработана, спарсено {cat_count} из {TARGET_COUNT} статей.")
+        # Если на странице новостей меньше ожидаемого — возможно, достигнут конец раздела.
+        # В этом случае завершаем парсинг категории, даже если целевое количество не достигнуто.
+    logging.info(f"Для категории '{category.rstrip('/')}' спарсено {cat_count} из {TARGET_COUNT} статей.")
+    return cat_count
 
 
 def main():
     logging.info("Начало парсинга.")
     session = create_session()
     catalog = []  # Итоговый список объектов-статей
-    category_counts = {}  # Словарь для подсчёта статей по категориям
+    category_counts = {}  # Подсчет статей по категориям
 
     try:
         for category in CATEGORIES:
-            count_before = len(catalog)
-            logging.info(f"Обработка категории: {category}")
-            parse_category(session, category, catalog)
-            count_after = len(catalog)
-            cat_name = category.rstrip("/")
-            cat_count = count_after - count_before
-            category_counts[cat_name] = cat_count
-            logging.info(f"Категория {cat_name} обработана, накоплено статей: {cat_count}")
+            logging.info(f"Обработка категории: {category.rstrip('/')}")
+            cat_count = parse_category(session, category, catalog)
+            category_counts[category.rstrip("/")] = cat_count
     except KeyboardInterrupt:
         logging.info("Парсинг прерван пользователем (Ctrl+C).")
     finally:
@@ -181,10 +196,13 @@ def main():
         save_data(catalog, OUTPUT_FILE)
         total_articles = len(catalog)
         logging.info("Парсинг завершён.")
+        logging.info(f"Общее количество статей: {total_articles}")
+
         # Проверка минимальных требований
         if total_articles < 4000:
             logging.error(f"Общее количество статей недостаточно: {total_articles} < 4000")
         for cat, count in category_counts.items():
+            logging.info(f"Категория '{cat}': {count} из {TARGET_COUNT} статей спарсено.")
             if count < 950:
                 logging.error(f"Количество статей для категории '{cat}' вне допустимого диапазона: {count} (ожидалось 1000±50)")
         if total_articles >= 4000 and all(950 <= count for count in category_counts.values()):
