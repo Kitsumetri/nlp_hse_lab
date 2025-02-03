@@ -9,11 +9,11 @@ from bs4 import BeautifulSoup
 import regex as re
 
 # Updated settings
-categories = ['world', 'business', 'technology', 'markets']
-# categories = ['business']
+# categories = ['world', 'business', 'technology', 'markets']
+categories = ['business']
 articles_per_category = 1000
 articles_per_request = 20
-connection_batch_size = 100
+connection_batch_size = 50
 output_links_file = 'data/reuters_links.jsonl'
 output_articles_file = 'data/reuters_articles.json'
 
@@ -40,6 +40,8 @@ class ReutersScraper:
 
     def _init_session(self):
         """Initialize session with proper cookies and headers"""
+        self.session.close()
+
         # First request to establish basic cookies
         self.session.get('https://www.reuters.com/', headers=HEADERS_TEMPLATE)
         time.sleep(random.uniform(3, 5))
@@ -54,7 +56,7 @@ class ReutersScraper:
         if category:
             headers['Referer'] = f'https://www.reuters.com/{category}/'
         
-        time.sleep(random.uniform(0.5, 2))
+        time.sleep(random.uniform(0.3, 1))
         
         try:
             response = self.session.get(url, headers=headers)
@@ -205,14 +207,12 @@ class ReutersScraper:
                 logging.info("Safe reconnecting...")
                 self._init_session()
 
-                with open(output_articles_file, 'a', encoding='utf-8') as f:
+                with open(output_articles_file, 'w', encoding='utf-8') as f:
                     json.dump(articles_data, f, ensure_ascii=False, indent=4)
-                    articles_data.clear()
                     logging.info(f"Saved {idx+1} articles from {articles_per_category*len(categories)}")
         
-        with open(output_articles_file, 'a', encoding='utf-8') as f:
+        with open(output_articles_file, 'w', encoding='utf-8') as f:
             json.dump(articles_data, f, ensure_ascii=False, indent=4)
-            articles_data.clear()
             logging.info(f"All {articles_per_category * len(categories)} articles saved!")
         
     def _remove_trailing_junk(self, text):
