@@ -8,14 +8,25 @@ import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter, Retry
 
-# ==================== Конфигурация ====================
 BASE_URL = "https://www.belta.by/"
-# Добавлены категории: economics, tech, culture, incident, regions, politics
-CATEGORIES = ["economics/", "tech/", "culture/", "incident/", "regions/", "politics/"]
-MAX_PAGES = 50              # Максимальное число страниц для парсинга в каждой категории
-TARGET_COUNT = 1000         # Целевое количество статей для каждой категории
+CATEGORIES = [
+    "economics/",
+    "tech/",
+    "incident/", 
+    "regions/",
+    "politics/",
+    "president/",
+    "society/",
+    "kaleidoscope/",
+    "events/",
+    "sport/",
+    "culture/",
+    "world/",
+]
+MAX_PAGES = 100
+TARGET_COUNT = 1000
 OUTPUT_FILE = Path("data/belta_articles.json")
-SAVE_BATCH = 100            # Сохранять данные каждые 100 статей
+SAVE_BATCH = 100
 
 HEADERS = {
     "Accept": "*/*",
