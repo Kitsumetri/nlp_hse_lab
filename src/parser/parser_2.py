@@ -4,11 +4,12 @@ import time
 import random
 from urllib.parse import quote
 from bs4 import BeautifulSoup
+import regex as re
 
 # Updated settings
-categories = ['world', 'business', 'technology', 'politics']
-articles_per_category = 20
-articles_per_request = 20
+categories = ['world', 'business', 'technology', 'markets']
+articles_per_category = 10
+articles_per_request = 10
 output_links_file = 'reuters_links.jsonl'
 output_articles_file = 'reuters_articles.json'
 
@@ -111,8 +112,45 @@ class ReutersScraper:
                     print(f"Error fetching {category}: {e}")
                     break
 
+    def _extract_article_content(self, soup):
+        """Direct text extraction from paragraph containers"""
+        paragraphs = soup.find_all('div', {
+            'data-testid': lambda x: x and x.startswith('paragraph-')
+        })
+        
+        clean_text = []
+        for p in paragraphs:
+            # Skip non-content containers
+            if p.find(['aside', 'figure', 'div[data-testid="signup-prompt"]']):
+                continue
+                
+            # Directly extract text from the div itself
+            text = p.get_text(separator=' ', strip=True)
+            if text:
+                clean_text.append(text)
+        
+        return ' '.join(clean_text)
+
+    # def _extract_tags_from_meta(self, soup):
+    #     """Improved tag extraction from multiple sources"""
+    #     # From keywords meta
+    #     meta_keywords = soup.find('meta', {'name': 'keywords'})
+    #     if meta_keywords:
+    #         return [tag.strip() for tag in meta_keywords.get('content', '').split(',')]
+        
+    #     # From JSON-LD data
+    #     script = soup.find('script', type='application/ld+json')
+    #     if script:
+    #         try:
+    #             data = json.loads(script.string)
+    #             return data.get('keywords', '').split(',')
+    #         except json.JSONDecodeError:
+    #             pass
+        
+    #     return []
+
     def parse_articles(self):
-        """Parse individual articles with enhanced protection bypass"""
+        """Updated parsing with proper text/tag handling"""
         articles_data = []
         
         with open(output_links_file, 'r', encoding='utf-8') as f:
@@ -122,35 +160,38 @@ class ReutersScraper:
             article_info = json.loads(line)
             url = article_info['url']
             category = article_info['category']
-            tags = article_info['tags']
+            tags = article_info['tags']  # Preserve API-provided tags
             
             try:
                 response = self._make_request(url, category)
                 soup = BeautifulSoup(response.text, 'html.parser')
                 
-                # Extract title
-                title = soup.find('h1').text.strip() if soup.find('h1') else article_info['title']
+                # Extract title using direct text access
+                title_element = soup.find('h1')
+                title = title_element.text.strip() if title_element else article_info['title']
                 
-                # Extract article body
-                body = soup.select_one('div.article-body__content')
-                text = ' '.join([p.text.strip() for p in body.find_all('p')]) if body else ''
+                # Extract article text
+                text = self._extract_article_content(soup)
                 
+                # Clean up Reuters-specific trailing content
+                text = re.sub(r'\s*Sign up here\..*$', '', text, flags=re.DOTALL)
+                text = re.sub(r'\s*Our Standards:.*$', '', text, flags=re.DOTALL)
                 # Fallback tag extraction
                 if not tags:
                     meta_keywords = soup.find('meta', {'name': 'keywords'})
                     if meta_keywords:
-                        tags = [tag.strip() for tag in meta_keywords.get('content', '').split(',')]
+                        tags = [tag.strip() for tag in meta_keywords.get('content', '').split(',') if (not "DEST" in tag)]
                 
                 article_entry = {
                     "article_id": url,
                     "title": title,
                     "category": category.replace('-', '_'),
-                    "tags": ",".join(tags),
+                    "tags": tags,
                     "text": text.strip()
                 }
                 
                 articles_data.append(article_entry)
-                print(f"Successfully parsed: {title[:60]}...")
+                print(f"Successfully parsed: {title[:50]}...")
                 
             except Exception as e:
                 print(f"Error parsing {url}: {e}")
@@ -158,6 +199,43 @@ class ReutersScraper:
         
         with open(output_articles_file, 'w', encoding='utf-8') as f:
             json.dump(articles_data, f, ensure_ascii=False, indent=4)
+        
+    def _remove_trailing_junk(self, text):
+        """Remove common trailing elements like sign-up prompts"""
+        patterns = [
+            r'\s*Sign up here\..*$',
+            r'\s*Our Standards:.*$',
+            r'\s*Reporting by.*$',
+            r'\s*Editing by.*$',
+            r'\s*Thomson Reuters.*$'
+        ]
+        for pattern in patterns:
+            text = re.sub(pattern, '', text, flags=re.DOTALL|re.IGNORECASE)
+        return text.strip()
+
+    def _extract_meta_description(self, soup):
+        """Extract description from meta tags"""
+        meta = soup.find('meta', {'name': 'description'}) or \
+            soup.find('meta', {'property': 'og:description'})
+        return meta.get('content', '').strip() if meta else ''
+
+    def _extract_tags_from_meta(self, soup):
+        """Improved tag extraction from multiple sources"""
+        # From keywords meta
+        meta_keywords = soup.find('meta', {'name': 'keywords'})
+        if meta_keywords:
+            return [tag.strip() for tag in meta_keywords.get('content', '').split(',')]
+        
+        # From JSON-LD data
+        script = soup.find('script', type='application/ld+json')
+        if script:
+            try:
+                data = json.loads(script.string)
+                return data.get('keywords', '').split(',')
+            except json.JSONDecodeError:
+                pass
+        
+        return []
 
 if __name__ == '__main__':
     scraper = ReutersScraper()
