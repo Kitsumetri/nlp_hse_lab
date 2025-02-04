@@ -9,8 +9,8 @@ from bs4 import BeautifulSoup
 import regex as re
 
 # Updated settings
-# categories = ['world', 'business', 'technology', 'markets']
-categories = ['business']
+categories = ['world', 'business', 'technology', 'markets']
+# categories = ['technology']
 articles_per_category = 1000
 articles_per_request = 20
 connection_batch_size = 50
