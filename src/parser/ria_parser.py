@@ -72,7 +72,7 @@ def collect_links_for_category(category_url, category_name, min_links=1000):
                 url = elem.get_attribute("href")
                 if url:
                     links_data.add(url)
-            logger.debug("Сейчас для категории '%s' собрано ссылок: %d", category_name, len(links_data))
+            logger.debug("Для категории '%s' собрано ссылок: %d", category_name, len(links_data))
         except Exception as e:
             logger.error("Ошибка при извлечении ссылок для категории '%s': %s", category_name, e)
         current_links = [{"url": url, "category": category_name} for url in links_data]
@@ -84,18 +84,43 @@ def collect_links_for_category(category_url, category_name, min_links=1000):
             more_button = driver.find_element(By.CSS_SELECTOR, "div.list-more.color-btn-second-hover")
             logger.debug("Нажатие кнопки 'Еще 20 материалов' для категории '%s'.", category_name)
             driver.execute_script("arguments[0].click();", more_button)
-            time.sleep(1)
+            time.sleep(2)
         except Exception as e:
             logger.info("Кнопка 'Еще 20 материалов' не найдена для категории '%s'. Error: %s", category_name, e)
             break
     return [{"url": url, "category": category_name} for url in links_data]
 
+def get_with_backoff(url, headers, max_retries=5, backoff_factor=1):
+    """Выполняет запрос с экспоненциальным бэкоффом при получении кода 429."""
+    retries = 0
+    while retries < max_retries:
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code != 429:
+                return response
+            wait_time = backoff_factor * (4 ** retries)
+            logger.warning("Ошибка 429 для %s. Повтор через %d секунд...", url, wait_time)
+            time.sleep(wait_time)
+            retries += 1
+        except Exception as e:
+            logger.error("Исключение при запросе %s: %s", url, e)
+            return None
+    return response
+
 def parse_article(article_url, category):
     logger.debug("Парсинг статьи: %s", article_url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1'
+    }
     try:
-        response = requests.get(article_url, headers={'User-Agent': 'Mozilla/5.0'})
-        if response.status_code != 200:
-            logger.error("Ошибка запроса %s: код %d", article_url, response.status_code)
+        response = get_with_backoff(article_url, headers=headers, max_retries=7, backoff_factor=2)
+        if not response or response.status_code != 200:
+            logger.error("Ошибка запроса %s: код %s", article_url, response.status_code if response else "None")
             return None
         soup = BeautifulSoup(response.content, "html.parser")
     except Exception as e:
@@ -133,7 +158,7 @@ def parse_article(article_url, category):
         "tags": tags,
         "text": text
     }
-    logger.debug(f"Извлечены данные статьи: {article_data}")
+    logger.debug("Извлечены данные статьи: %s", article_data)
     return article_data
 
 def main():
