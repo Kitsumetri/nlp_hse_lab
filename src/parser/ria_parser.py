@@ -9,9 +9,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
 # ========== Конфигурационные переменные ==========
-TARGET_LINKS = 10
-CHUNK_SIZE_LINKS = 5
-CHUNK_SIZE_ARTICLES = 5
+TARGET_LINKS = 1000
+CHUNK_SIZE_LINKS = 50
+CHUNK_SIZE_ARTICLES = 50
 LINKS_OUTPUT_FILE = "data/ria_links.json"
 ARTICLES_OUTPUT_FILE = "data/ria_articles.json"
 # ===================================================
@@ -19,15 +19,15 @@ ARTICLES_OUTPUT_FILE = "data/ria_articles.json"
 # Полный список категорий
 CATEGORIES = [
     {"url": "https://ria.ru/politics", "category": "politics"},
-    # {"url": "https://ria.ru/world", "category": "world"},
-    # {"url": "https://ria.ru/economy", "category": "economy"},
-    # {"url": "https://ria.ru/society", "category": "society"},
-    # {"url": "https://ria.ru/incidents", "category": "incidents"},
-    # {"url": "https://ria.ru/defense_safety", "category": "defense_safety"},
-    # {"url": "https://ria.ru/science", "category": "science"},
-    # {"url": "https://ria.ru/culture", "category": "culture"},
-    # # {"url": "https://ria.ru/tourism", "category": "tourism"},
-    # {"url": "https://ria.ru/religion", "category": "religion"}
+    {"url": "https://ria.ru/world", "category": "world"},
+    {"url": "https://ria.ru/economy", "category": "economy"},
+    {"url": "https://ria.ru/society", "category": "society"},
+    {"url": "https://ria.ru/incidents", "category": "incidents"},
+    {"url": "https://ria.ru/defense_safety", "category": "defense_safety"},
+    {"url": "https://ria.ru/science", "category": "science"},
+    {"url": "https://ria.ru/culture", "category": "culture"},
+    # {"url": "https://ria.ru/tourism", "category": "tourism"},
+    {"url": "https://ria.ru/religion", "category": "religion"}
 ]
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
