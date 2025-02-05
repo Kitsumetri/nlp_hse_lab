@@ -14,8 +14,8 @@ import concurrent.futures
 TARGET_LINKS = 1000
 CHUNK_SIZE_LINKS = 50
 CHUNK_SIZE_ARTICLES = 50
-LINKS_OUTPUT_FILE = "data/ria_links.json"
-ARTICLES_OUTPUT_FILE = "data/ria_articles.json"
+LINKS_OUTPUT_FILE = "ria_links.json"
+ARTICLES_OUTPUT_FILE = "ria_articles.json"
 # ===================================================
 
 # Полный список категорий
@@ -229,12 +229,12 @@ def main():
     for idx in range(hard_chunk_count):
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             results += list(executor.map(worker, missing_links[idx*CHUNK_SIZE_ARTICLES:(idx+1)*CHUNK_SIZE_ARTICLES]))
-            save_articles(collected_articles + results)
+            save_articles(collected_articles + [article for article in results if article])
             logging.info(f"Сохраняем {len(results)}/{len(missing_links)} статей.")
     if hard_chunk_count != len(missing_links) / CHUNK_SIZE_ARTICLES:
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             results += list(executor.map(worker, missing_links[hard_chunk_count*CHUNK_SIZE_ARTICLES:-1]))
-            save_articles(collected_articles + results)
+            save_articles(collected_articles + [article for article in results if article])
             logging.info(f"Сохраняем {len(results)}/{len(missing_links)} статей.")
 
     new_articles = [article for article in results if article is not None]
