@@ -1105,7 +1105,7 @@
     },
     {
         "url": "https://ria.ru/20250203/belorussiya-1997038271.html",
-        "category": "politics"
+        "category": "world"
     },
     {
         "url": "https://ria.ru/20241104/gubernatory-1981836689.html",
@@ -1189,7 +1189,7 @@
     },
     {
         "url": "https://ria.ru/20250205/peskov-1997478205.html",
-        "category": "politics"
+        "category": "world"
     },
     {
         "url": "https://ria.ru/20241215/putin-1989313239.html",
@@ -1537,7 +1537,7 @@
     },
     {
         "url": "https://ria.ru/20250205/usaid-1997464536.html",
-        "category": "politics"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20241214/putin-1989208053.html",
@@ -1777,7 +1777,7 @@
     },
     {
         "url": "https://ria.ru/20250122/pamfilova-1994957631.html",
-        "category": "politics"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20241020/telegraph-1978972555.html",
@@ -2081,7 +2081,7 @@
     },
     {
         "url": "https://ria.ru/20250203/bayru-1997167096.html",
-        "category": "politics"
+        "category": "world"
     },
     {
         "url": "https://ria.ru/20241205/putin-1987545622.html",
@@ -2933,7 +2933,7 @@
     },
     {
         "url": "https://ria.ru/20250128/volodin-1995895098.html",
-        "category": "politics"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20241112/putin-1983306985.html",
@@ -3073,7 +3073,7 @@
     },
     {
         "url": "https://ria.ru/20250203/lukashenko-1997035741.html",
-        "category": "politics"
+        "category": "world"
     },
     {
         "url": "https://ria.ru/20241214/oskol-1989202858.html",
@@ -3849,7 +3849,7 @@
     },
     {
         "url": "https://ria.ru/20250121/armeniya-1994784507.html",
-        "category": "politics"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250202/putin-1996883318.html",
@@ -4061,7 +4061,7 @@
     },
     {
         "url": "https://ria.ru/20250205/sretenie_gospodne-1844706150.html",
-        "category": "world"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250201/obraschenie-1996738891.html",
@@ -4117,7 +4117,7 @@
     },
     {
         "url": "https://ria.ru/20250204/ssha-1997243861.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250203/germaniya-1997126076.html",
@@ -4237,7 +4237,7 @@
     },
     {
         "url": "https://ria.ru/20250204/azal-1997379609.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250201/venesuela-1996766077.html",
@@ -4301,7 +4301,7 @@
     },
     {
         "url": "https://ria.ru/20250203/paskha-1784063287.html",
-        "category": "world"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250204/oreshnik-1997221747.html",
@@ -4313,7 +4313,7 @@
     },
     {
         "url": "https://ria.ru/20250203/premer-1997045091.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250131/slovakiya-1996669888.html",
@@ -4397,7 +4397,7 @@
     },
     {
         "url": "https://ria.ru/20250203/germaniya-1997115496.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250205/kherson-1997495174.html",
@@ -4405,7 +4405,7 @@
     },
     {
         "url": "https://ria.ru/20250205/nauka-1997465530.html",
-        "category": "world"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250204/migratsiya-1997214621.html",
@@ -4565,7 +4565,7 @@
     },
     {
         "url": "https://ria.ru/20250204/ssha-1997241424.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250205/es-1997466577.html",
@@ -4593,7 +4593,7 @@
     },
     {
         "url": "https://ria.ru/20250205/ekspert-1997431811.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250202/sdelka-1996854890.html",
@@ -4701,7 +4701,7 @@
     },
     {
         "url": "https://ria.ru/20250204/subbota-1833322217.html",
-        "category": "world"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250202/gaza-1996900245.html",
@@ -4993,7 +4993,7 @@
     },
     {
         "url": "https://ria.ru/20250203/post-1850387242.html",
-        "category": "world"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250202/koalitsija-1996900682.html",
@@ -5116,10 +5116,6 @@
         "category": "world"
     },
     {
-        "url": "https://ria.ru/20250203/belorussiya-1997038271.html",
-        "category": "world"
-    },
-    {
         "url": "https://ria.ru/20250203/vybory-1996938616.html",
         "category": "world"
     },
@@ -5145,7 +5141,7 @@
     },
     {
         "url": "https://ria.ru/20250204/proizvoditeli-1997227980.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250201/syrskij-1996797899.html",
@@ -5241,11 +5237,7 @@
     },
     {
         "url": "https://ria.ru/20250204/kitaj-1997235351.html",
-        "category": "world"
-    },
-    {
-        "url": "https://ria.ru/20250205/peskov-1997478205.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250203/posolstvo-1997132385.html",
@@ -5325,7 +5317,7 @@
     },
     {
         "url": "https://ria.ru/20250205/kitaj-1997429419.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250205/iran-1997470906.html",
@@ -5397,7 +5389,7 @@
     },
     {
         "url": "https://ria.ru/20250201/aysberg-1996815501.html",
-        "category": "world"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250205/ukraina-1997454554.html",
@@ -5465,7 +5457,7 @@
     },
     {
         "url": "https://ria.ru/20250204/kitaj-1997240644.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250204/mask-1997225782.html",
@@ -5481,7 +5473,7 @@
     },
     {
         "url": "https://ria.ru/20250204/azal-1997377646.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250203/sarkisyan-1997016191.html",
@@ -5513,7 +5505,7 @@
     },
     {
         "url": "https://ria.ru/20250203/es-1997054894.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250204/gaza-1997216712.html",
@@ -5613,7 +5605,7 @@
     },
     {
         "url": "https://ria.ru/20250204/poshliny-1997345344.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250205/zelenskiy-1997490348.html",
@@ -5673,7 +5665,7 @@
     },
     {
         "url": "https://ria.ru/20250203/ssha-1997077074.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250204/tramp-1997199907.html",
@@ -5805,7 +5797,7 @@
     },
     {
         "url": "https://ria.ru/20250203/mikhalkov-1997188322.html",
-        "category": "world"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250205/tramp-1997415400.html",
@@ -5937,7 +5929,7 @@
     },
     {
         "url": "https://ria.ru/20250204/serbiya-1997313849.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250201/belousov-1996785851.html",
@@ -6069,7 +6061,7 @@
     },
     {
         "url": "https://ria.ru/20250204/ssha-1997315185.html",
-        "category": "world"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250204/ukraina-1997355838.html",
@@ -6097,10 +6089,6 @@
     },
     {
         "url": "https://ria.ru/20250204/grossi-1997371926.html",
-        "category": "world"
-    },
-    {
-        "url": "https://ria.ru/20250203/bayru-1997167096.html",
         "category": "world"
     },
     {
@@ -6145,7 +6133,7 @@
     },
     {
         "url": "https://ria.ru/20250201/pridnestrove-1996781112.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250202/otvet-1996857262.html",
@@ -6233,7 +6221,7 @@
     },
     {
         "url": "https://ria.ru/20250201/gaz-1996796050.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250203/svr-1997029829.html",
@@ -6317,7 +6305,7 @@
     },
     {
         "url": "https://ria.ru/20250204/azal-1997398321.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250204/peskov-1997278894.html",
@@ -6713,7 +6701,7 @@
     },
     {
         "url": "https://ria.ru/20250203/germaniya-1997107642.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250204/iordan-1997249466.html",
@@ -6725,7 +6713,7 @@
     },
     {
         "url": "https://ria.ru/20250203/agibot-1997125215.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250204/salvador-1997220757.html",
@@ -6793,7 +6781,7 @@
     },
     {
         "url": "https://ria.ru/20250201/es-1996755898.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250131/trevoga-1996717546.html",
@@ -6881,7 +6869,7 @@
     },
     {
         "url": "https://ria.ru/20250203/vto-1997053581.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250202/vzryv-1996923072.html",
@@ -7105,7 +7093,7 @@
     },
     {
         "url": "https://ria.ru/20250203/ssha-1997134116.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250201/zalozhniki-1996761986.html",
@@ -7121,10 +7109,6 @@
     },
     {
         "url": "https://ria.ru/20250202/kitay_otvet-1996860226.html",
-        "category": "world"
-    },
-    {
-        "url": "https://ria.ru/20250203/lukashenko-1997035741.html",
         "category": "world"
     },
     {
@@ -7165,7 +7149,7 @@
     },
     {
         "url": "https://ria.ru/20250203/ria-1997136134.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250205/gaza-1997411922.html",
@@ -7193,7 +7177,7 @@
     },
     {
         "url": "https://ria.ru/20250204/azal-1997376121.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250201/mid-1996802269.html",
@@ -7565,7 +7549,7 @@
     },
     {
         "url": "https://ria.ru/20250204/azal-1997376794.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250203/tramp-1997191944.html",
@@ -7845,7 +7829,7 @@
     },
     {
         "url": "https://ria.ru/20250203/poshliny-1997033404.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250205/zelenskij-1997428127.html",
@@ -7869,7 +7853,7 @@
     },
     {
         "url": "https://ria.ru/20250205/turtsija-1997442219.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250205/peskov-1997478102.html",
@@ -7957,11 +7941,11 @@
     },
     {
         "url": "https://ria.ru/20250203/gendirektor-1997074298.html",
-        "category": "world"
+        "category": "economy"
     },
     {
         "url": "https://ria.ru/20250204/azal-1997379736.html",
-        "category": "world"
+        "category": "incidents"
     },
     {
         "url": "https://ria.ru/20250204/putin-1997200433.html",
@@ -7973,7 +7957,7 @@
     },
     {
         "url": "https://ria.ru/20250204/okean-1997223777.html",
-        "category": "world"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250205/tramp-1997477633.html",
@@ -8116,10 +8100,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250204/ssha-1997243861.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20250105/biznes-1992581070.html",
         "category": "economy"
     },
@@ -8149,7 +8129,7 @@
     },
     {
         "url": "https://ria.ru/20250127/ubtech-1995629863.html",
-        "category": "economy"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250201/tramp-1996751145.html",
@@ -8324,10 +8304,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250203/premer-1997045091.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20250131/bespilotniki-1996523608.html",
         "category": "economy"
     },
@@ -8377,10 +8353,6 @@
     },
     {
         "url": "https://ria.ru/20241225/tsb-1991336836.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250203/germaniya-1997115496.html",
         "category": "economy"
     },
     {
@@ -8541,7 +8513,7 @@
     },
     {
         "url": "https://ria.ru/20250204/proekt-1997369167.html",
-        "category": "economy"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20241226/putin-1991553480.html",
@@ -8549,10 +8521,6 @@
     },
     {
         "url": "https://ria.ru/20250116/drevesina-1993939479.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250204/ssha-1997241424.html",
         "category": "economy"
     },
     {
@@ -8577,10 +8545,6 @@
     },
     {
         "url": "https://ria.ru/20250112/putin-1993298982.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250205/ekspert-1997431811.html",
         "category": "economy"
     },
     {
@@ -9069,7 +9033,7 @@
     },
     {
         "url": "https://ria.ru/20250128/vznosy-1899033536.html",
-        "category": "economy"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20250205/voyna-1997408651.html",
@@ -9129,10 +9093,6 @@
     },
     {
         "url": "https://ria.ru/20250204/gazprom-1997297153.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250204/proizvoditeli-1997227980.html",
         "category": "economy"
     },
     {
@@ -9209,10 +9169,6 @@
     },
     {
         "url": "https://ria.ru/20250120/tramp-1994712849.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250204/kitaj-1997235351.html",
         "category": "economy"
     },
     {
@@ -9305,10 +9261,6 @@
     },
     {
         "url": "https://ria.ru/20241224/banki-1991040992.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250205/kitaj-1997429419.html",
         "category": "economy"
     },
     {
@@ -9449,11 +9401,7 @@
     },
     {
         "url": "https://ria.ru/20250109/putin-1992963690.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250204/kitaj-1997240644.html",
-        "category": "economy"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20250121/plan-1994891923.html",
@@ -9497,10 +9445,6 @@
     },
     {
         "url": "https://ria.ru/20250129/gaz-1996195671.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250203/es-1997054894.html",
         "category": "economy"
     },
     {
@@ -9608,10 +9552,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250204/poshliny-1997345344.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20241225/alikhanov-1991118435.html",
         "category": "economy"
     },
@@ -9665,10 +9605,6 @@
     },
     {
         "url": "https://ria.ru/20250114/sevastopol-1993722456.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250203/ssha-1997077074.html",
         "category": "economy"
     },
     {
@@ -9909,7 +9845,7 @@
     },
     {
         "url": "https://ria.ru/20250205/zoloto-1997457615.html",
-        "category": "economy"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20241230/moldaviya-1992086872.html",
@@ -9941,10 +9877,6 @@
     },
     {
         "url": "https://realty.ria.ru/20250127/mosbirzha-1995778918.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250204/serbiya-1997313849.html",
         "category": "economy"
     },
     {
@@ -10136,10 +10068,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250201/pridnestrove-1996781112.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20241231/putin-1992154704.html",
         "category": "economy"
     },
@@ -10260,10 +10188,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250201/gaz-1996796050.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20250131/kanada-1996657012.html",
         "category": "economy"
     },
@@ -10361,7 +10285,7 @@
     },
     {
         "url": "https://ria.ru/20250128/kalashnikov-1995860134.html",
-        "category": "economy"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250118/evrosoyuz-1994347104.html",
@@ -10764,14 +10688,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250203/germaniya-1997107642.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250203/agibot-1997125215.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20250110/briks-1993124044.html",
         "category": "economy"
     },
@@ -10809,10 +10725,6 @@
     },
     {
         "url": "https://ria.ru/20250123/rets-1995096674.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250201/es-1996755898.html",
         "category": "economy"
     },
     {
@@ -10881,10 +10793,6 @@
     },
     {
         "url": "https://ria.ru/20241229/sovbez-1992047619.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250203/vto-1997053581.html",
         "category": "economy"
     },
     {
@@ -11100,10 +11008,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250203/ssha-1997134116.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20250123/putin-1995167459.html",
         "category": "economy"
     },
@@ -11188,10 +11092,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250203/ria-1997136134.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20250116/putin-1994016713.html",
         "category": "economy"
     },
@@ -11249,7 +11149,7 @@
     },
     {
         "url": "https://ria.ru/20250204/dengi-1779669797.html",
-        "category": "economy"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20250129/sheremetevo-1996210362.html",
@@ -11561,7 +11461,7 @@
     },
     {
         "url": "https://ri.ria.ru/20250205/nauka-1997139228.html",
-        "category": "economy"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250108/kompanii-1992798458.html",
@@ -11856,10 +11756,6 @@
         "category": "economy"
     },
     {
-        "url": "https://ria.ru/20250203/poshliny-1997033404.html",
-        "category": "economy"
-    },
-    {
         "url": "https://ria.ru/20241226/tranzit-1991548565.html",
         "category": "economy"
     },
@@ -11877,10 +11773,6 @@
     },
     {
         "url": "https://ria.ru/20250113/kitay-1993406948.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250121/armeniya-1994784507.html",
         "category": "economy"
     },
     {
@@ -11985,14 +11877,10 @@
     },
     {
         "url": "https://ria.ru/20250128/putin-1995992759.html",
-        "category": "economy"
+        "category": "society"
     },
     {
         "url": "https://ria.ru/20250125/uspekhi-1995465201.html",
-        "category": "economy"
-    },
-    {
-        "url": "https://ria.ru/20250203/gendirektor-1997074298.html",
         "category": "economy"
     },
     {
@@ -12157,7 +12045,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993259121.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250203/artek-1997072130.html",
@@ -12201,7 +12089,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993274617.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250204/pogrebenie-1734671519.html",
@@ -12229,7 +12117,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993283862.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250122/programma-1994936670.html",
@@ -12305,7 +12193,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993280182.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250205/efremov-1997405168.html",
@@ -12433,7 +12321,7 @@
     },
     {
         "url": "https://ria.ru/20250120/most-1994641763.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250125/mgu-1995481245.html",
@@ -12445,7 +12333,7 @@
     },
     {
         "url": "https://ria.ru/20250112/pulkovo-1993358552.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250131/markirovka-1996712814.html",
@@ -12473,7 +12361,7 @@
     },
     {
         "url": "https://ria.ru/20250112/most-1993344502.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250111/moskva-1993252772.html",
@@ -12536,10 +12424,6 @@
         "category": "society"
     },
     {
-        "url": "https://ria.ru/20250204/proekt-1997369167.html",
-        "category": "society"
-    },
-    {
         "url": "https://ria.ru/20250107/migranty-1992739843.html",
         "category": "society"
     },
@@ -12573,7 +12457,7 @@
     },
     {
         "url": "https://ria.ru/20250113/infotsentr-1993548503.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250112/semya-1993387582.html",
@@ -12649,7 +12533,7 @@
     },
     {
         "url": "https://ria.ru/20250113/most-1993542873.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250205/pensionery-1997439079.html",
@@ -12693,10 +12577,6 @@
     },
     {
         "url": "https://ria.ru/20250114/sistema-1993708344.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250204/subbota-1833322217.html",
         "category": "society"
     },
     {
@@ -12877,7 +12757,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993271024.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250205/migranty-1997404060.html",
@@ -13029,7 +12909,7 @@
     },
     {
         "url": "https://ria.ru/20250201/semenovskij-1996823718.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250202/migranty-1996901228.html",
@@ -13081,10 +12961,6 @@
     },
     {
         "url": "https://ria.ru/20250201/artist-1996789262.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250128/vznosy-1899033536.html",
         "category": "society"
     },
     {
@@ -13225,7 +13101,7 @@
     },
     {
         "url": "https://ria.ru/20250128/kuban-1995947271.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250205/ukraina-1997431015.html",
@@ -13377,10 +13253,6 @@
     },
     {
         "url": "https://ria.ru/20250116/matkapital-1993962496.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250109/putin-1992963690.html",
         "category": "society"
     },
     {
@@ -13565,7 +13437,7 @@
     },
     {
         "url": "https://ria.ru/20250107/kazaki-1991911539.html",
-        "category": "society"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250110/igry-1993099618.html",
@@ -13685,7 +13557,7 @@
     },
     {
         "url": "https://ria.ru/20250112/pulkovo-1993365726.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250115/putin-1993882008.html",
@@ -13697,10 +13569,6 @@
     },
     {
         "url": "https://ria.ru/20250123/sotspodderzhka-1995188370.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250122/pamfilova-1994957631.html",
         "category": "society"
     },
     {
@@ -13725,7 +13593,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993285805.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250109/putin-1992906021.html",
@@ -13769,7 +13637,7 @@
     },
     {
         "url": "https://ria.ru/20250113/krym-1993546010.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://realty.ria.ru/20250110/minstroj-1993166104.html",
@@ -13792,12 +13660,8 @@
         "category": "society"
     },
     {
-        "url": "https://ria.ru/20250205/zoloto-1997457615.html",
-        "category": "society"
-    },
-    {
         "url": "https://ria.ru/20250128/kologrivyy-1995975016.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250130/medinskiy-1996297750.html",
@@ -13857,7 +13721,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993277239.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250110/prazdnik-1992994083.html",
@@ -13949,7 +13813,7 @@
     },
     {
         "url": "https://ria.ru/20250205/mazut-1997395825.html",
-        "category": "society"
+        "category": "science"
     },
     {
         "url": "https://ria.ru/20250121/pogoda-1994721557.html",
@@ -14065,7 +13929,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993290096.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250125/putin-1995453887.html",
@@ -14105,7 +13969,7 @@
     },
     {
         "url": "https://ria.ru/20250121/kharatyan-1994744700.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250204/subsidiya-1805446514.html",
@@ -14117,7 +13981,7 @@
     },
     {
         "url": "https://ria.ru/20250131/kartina-1996675182.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250115/zarnitsa-1993867195.html",
@@ -14125,7 +13989,7 @@
     },
     {
         "url": "https://ria.ru/20250130/gosduma-1996385103.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250124/mgu-1995351945.html",
@@ -14193,7 +14057,7 @@
     },
     {
         "url": "https://ria.ru/20250112/most-1993345513.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250128/posobiya-1852764722.html",
@@ -14225,7 +14089,7 @@
     },
     {
         "url": "https://ria.ru/20250113/svo-1993464585.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250121/khameleon-1994792942.html",
@@ -14253,7 +14117,7 @@
     },
     {
         "url": "https://ria.ru/20250120/maslenitsa-1848807705.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250117/biometriya-1994116001.html",
@@ -14393,7 +14257,7 @@
     },
     {
         "url": "https://ria.ru/20250131/akter-1996559950.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250108/pensii-1992833760.html",
@@ -14457,7 +14321,7 @@
     },
     {
         "url": "https://ria.ru/20250121/grekh-1994808068.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250123/posobie-1850955448.html",
@@ -14493,7 +14357,7 @@
     },
     {
         "url": "https://ria.ru/20250114/putin-1993725634.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250203/wildberries-1997195333.html",
@@ -14813,7 +14677,7 @@
     },
     {
         "url": "https://ria.ru/20250205/krganov-1997401884.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250203/aeroporty-1996952523.html",
@@ -14821,7 +14685,7 @@
     },
     {
         "url": "https://ria.ru/20250205/aprel-1850395199.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250204/poezd-1997215604.html",
@@ -14893,10 +14757,6 @@
     },
     {
         "url": "https://ria.ru/20250123/razvod-1598413963.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250128/volodin-1995895098.html",
         "category": "society"
     },
     {
@@ -15125,7 +14985,7 @@
     },
     {
         "url": "https://ria.ru/20250130/nikab-1996476488.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250122/vtb-1994916082.html",
@@ -15157,7 +15017,7 @@
     },
     {
         "url": "https://ria.ru/20250111/nizhnekamsk-1993287221.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250115/vypiska-1759365936.html",
@@ -15177,10 +15037,6 @@
     },
     {
         "url": "https://ria.ru/20250108/kozha-1992779969.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250204/dengi-1779669797.html",
         "category": "society"
     },
     {
@@ -15229,7 +15085,7 @@
     },
     {
         "url": "https://ria.ru/20250113/most-1993548992.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250123/rossija-1995079812.html",
@@ -15289,7 +15145,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993263443.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250203/prazdnik-1996811273.html",
@@ -15349,7 +15205,7 @@
     },
     {
         "url": "https://ria.ru/20250124/gazmanov-1995288641.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250128/pogoda-1995814818.html",
@@ -15361,7 +15217,7 @@
     },
     {
         "url": "https://ria.ru/20250117/kreschenie-1994224975.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250116/sk-1994079102.html",
@@ -15369,7 +15225,7 @@
     },
     {
         "url": "https://ria.ru/20250116/karta-1843996003.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250114/aviaperelety-1993557686.html",
@@ -15425,7 +15281,7 @@
     },
     {
         "url": "https://ria.ru/20250120/antisemit-1994633883.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250203/reklama-1997014019.html",
@@ -15605,7 +15461,7 @@
     },
     {
         "url": "https://ria.ru/20250119/kreschenie-1994447622.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250128/mizulina--1995868460.html",
@@ -15633,7 +15489,7 @@
     },
     {
         "url": "https://ria.ru/20250130/migratsiya-1996337024.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250113/shtraf-1993212901.html",
@@ -15653,7 +15509,7 @@
     },
     {
         "url": "https://ria.ru/20250119/kreschenie-1994433040.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250116/meteonablyudeniya-1994011300.html",
@@ -15673,7 +15529,7 @@
     },
     {
         "url": "https://ria.ru/20250107/post-1909431934.html",
-        "category": "society"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250203/aeroporty-1996974859.html",
@@ -15705,7 +15561,7 @@
     },
     {
         "url": "https://ria.ru/20250111/rosaviatsiya-1993297331.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250110/viza-1993175295.html",
@@ -15985,7 +15841,7 @@
     },
     {
         "url": "https://ria.ru/20250115/nemoljaev-1993895045.html",
-        "category": "society"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250112/podelki-1986293031.html",
@@ -16001,10 +15857,6 @@
     },
     {
         "url": "https://ria.ru/20250117/festival-yarmarka-1994208740.html",
-        "category": "society"
-    },
-    {
-        "url": "https://ria.ru/20250128/putin-1995992759.html",
         "category": "society"
     },
     {
@@ -16057,7 +15909,7 @@
     },
     {
         "url": "https://ria.ru/20250112/pulkovo-1993388143.html",
-        "category": "society"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250123/mnogodetnye-1995139978.html",
@@ -16333,10 +16185,6 @@
     },
     {
         "url": "https://ria.ru/20250124/rossija-1995282157.html",
-        "category": "incidents"
-    },
-    {
-        "url": "https://ria.ru/20250204/azal-1997379609.html",
         "category": "incidents"
     },
     {
@@ -17548,10 +17396,6 @@
         "category": "incidents"
     },
     {
-        "url": "https://ria.ru/20250204/azal-1997377646.html",
-        "category": "incidents"
-    },
-    {
         "url": "https://ria.ru/20250204/izbienie-1997303408.html",
         "category": "incidents"
     },
@@ -17985,7 +17829,7 @@
     },
     {
         "url": "https://ria.ru/20250131/ataka-1996522351.html",
-        "category": "incidents"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250204/utrish-1997332394.html",
@@ -18089,7 +17933,7 @@
     },
     {
         "url": "https://ria.ru/20250131/bespilotniki-1996527267.html",
-        "category": "incidents"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250130/obstrely-1996221812.html",
@@ -18373,10 +18217,6 @@
     },
     {
         "url": "https://ria.ru/20250123/pozhar-1995180735.html",
-        "category": "incidents"
-    },
-    {
-        "url": "https://ria.ru/20250204/azal-1997398321.html",
         "category": "incidents"
     },
     {
@@ -18833,7 +18673,7 @@
     },
     {
         "url": "https://ria.ru/20250127/yankovskiy-1995709905.html",
-        "category": "incidents"
+        "category": "culture"
     },
     {
         "url": "https://ria.ru/20250201/otravitel-1996741295.html",
@@ -19165,7 +19005,7 @@
     },
     {
         "url": "https://ria.ru/20250128/opasnost-1995997710.html",
-        "category": "incidents"
+        "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20250127/lobnya-1995633778.html",
@@ -19177,10 +19017,6 @@
     },
     {
         "url": "https://ria.ru/20250123/makfa-1995167003.html",
-        "category": "incidents"
-    },
-    {
-        "url": "https://ria.ru/20250204/azal-1997376121.html",
         "category": "incidents"
     },
     {
@@ -19552,10 +19388,6 @@
         "category": "incidents"
     },
     {
-        "url": "https://ria.ru/20250204/azal-1997376794.html",
-        "category": "incidents"
-    },
-    {
         "url": "https://ria.ru/20250126/zemletrjasenie-1995573261.html",
         "category": "incidents"
     },
@@ -19893,7 +19725,7 @@
     },
     {
         "url": "https://ria.ru/20250128/rpts-1995949981.html",
-        "category": "incidents"
+        "category": "religion"
     },
     {
         "url": "https://ria.ru/20250202/dtp-1996916421.html",
@@ -19929,10 +19761,6 @@
     },
     {
         "url": "https://ria.ru/20250131/ekaterinburg-1996719028.html",
-        "category": "incidents"
-    },
-    {
-        "url": "https://ria.ru/20250205/turtsija-1997442219.html",
         "category": "incidents"
     },
     {
@@ -20045,10 +19873,6 @@
     },
     {
         "url": "https://ria.ru/20250126/kamchatka-1995570980.html",
-        "category": "incidents"
-    },
-    {
-        "url": "https://ria.ru/20250204/azal-1997379736.html",
         "category": "incidents"
     },
     {
@@ -20172,10 +19996,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993259121.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250111/odessa-1993268744.html",
         "category": "defense_safety"
     },
@@ -20240,15 +20060,7 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993274617.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250123/tank-1995064583.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993283862.html",
         "category": "defense_safety"
     },
     {
@@ -20349,10 +20161,6 @@
     },
     {
         "url": "https://ria.ru/20250118/minoborony-1994384073.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993280182.html",
         "category": "defense_safety"
     },
     {
@@ -20480,14 +20288,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250120/most-1994641763.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250112/pulkovo-1993358552.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20241220/trevoga-1990295462.html",
         "category": "defense_safety"
     },
@@ -20509,10 +20309,6 @@
     },
     {
         "url": "https://ria.ru/20250205/vsu-1997444458.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250112/most-1993344502.html",
         "category": "defense_safety"
     },
     {
@@ -20688,10 +20484,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250113/infotsentr-1993548503.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20241219/boytsy-1990096337.html",
         "category": "defense_safety"
     },
@@ -20745,10 +20537,6 @@
     },
     {
         "url": "https://ria.ru/20241220/kreyser-1990308975.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250113/most-1993542873.html",
         "category": "defense_safety"
     },
     {
@@ -20993,10 +20781,6 @@
     },
     {
         "url": "https://ria.ru/20250122/udary-1994901923.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993271024.html",
         "category": "defense_safety"
     },
     {
@@ -21392,10 +21176,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250128/kuban-1995947271.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250111/spetsoperatsiya-1993249278.html",
         "category": "defense_safety"
     },
@@ -21748,10 +21528,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250205/usaid-1997464536.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250115/rossiya-1993804084.html",
         "category": "defense_safety"
     },
@@ -21928,10 +21704,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250112/pulkovo-1993365726.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20241228/vsu-1991795944.html",
         "category": "defense_safety"
     },
@@ -21992,10 +21764,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993285805.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250110/vsu-1993207581.html",
         "category": "defense_safety"
     },
@@ -22017,10 +21785,6 @@
     },
     {
         "url": "https://ria.ru/20250128/chechnja-1995969173.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250113/krym-1993546010.html",
         "category": "defense_safety"
     },
     {
@@ -22084,10 +21848,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250131/ataka-1996522351.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20241231/vmf-1992193287.html",
         "category": "defense_safety"
     },
@@ -22101,10 +21861,6 @@
     },
     {
         "url": "https://ria.ru/20241228/vsu-1991800386.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993277239.html",
         "category": "defense_safety"
     },
     {
@@ -22149,10 +21905,6 @@
     },
     {
         "url": "https://ria.ru/20241220/podlodka-1990297019.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250131/bespilotniki-1996527267.html",
         "category": "defense_safety"
     },
     {
@@ -22265,10 +22017,6 @@
     },
     {
         "url": "https://ria.ru/20250122/spetsoperatsiya-1994908745.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993290096.html",
         "category": "defense_safety"
     },
     {
@@ -22412,19 +22160,11 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250112/most-1993345513.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250106/bespilotnik-1992621459.html",
         "category": "defense_safety"
     },
     {
         "url": "https://ria.ru/20241226/spetsoperatsiya-1991424706.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250128/kalashnikov-1995860134.html",
         "category": "defense_safety"
     },
     {
@@ -23176,14 +22916,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250128/opasnost-1995997710.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/nizhnekamsk-1993287221.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://realty.ria.ru/20250108/spasatel-1990779537.html",
         "category": "defense_safety"
     },
@@ -23272,10 +23004,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250113/most-1993548992.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250127/pvo-1995799029.html",
         "category": "defense_safety"
     },
@@ -23341,10 +23069,6 @@
     },
     {
         "url": "https://ria.ru/20241219/boytsy-1990095066.html",
-        "category": "defense_safety"
-    },
-    {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993263443.html",
         "category": "defense_safety"
     },
     {
@@ -23744,10 +23468,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250111/rosaviatsiya-1993297331.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250121/spetsoperatsiya-1994774542.html",
         "category": "defense_safety"
     },
@@ -24052,10 +23772,6 @@
         "category": "defense_safety"
     },
     {
-        "url": "https://ria.ru/20250112/pulkovo-1993388143.html",
-        "category": "defense_safety"
-    },
-    {
         "url": "https://ria.ru/20250106/minoborony-1992628024.html",
         "category": "defense_safety"
     },
@@ -24153,10 +23869,6 @@
     },
     {
         "url": "https://ria.ru/20241013/kosmos-1977820445.html",
-        "category": "science"
-    },
-    {
-        "url": "https://ria.ru/20250127/ubtech-1995629863.html",
         "category": "science"
     },
     {
@@ -24397,10 +24109,6 @@
     },
     {
         "url": "https://ria.ru/20241212/nauka-1988635619.html",
-        "category": "science"
-    },
-    {
-        "url": "https://ria.ru/20250205/nauka-1997465530.html",
         "category": "science"
     },
     {
@@ -25400,10 +25108,6 @@
         "category": "science"
     },
     {
-        "url": "https://ria.ru/20250201/aysberg-1996815501.html",
-        "category": "science"
-    },
-    {
         "url": "https://ria.ru/20240704/nauka-1956899238.html",
         "category": "science"
     },
@@ -25804,10 +25508,6 @@
         "category": "science"
     },
     {
-        "url": "https://ria.ru/20250107/kazaki-1991911539.html",
-        "category": "science"
-    },
-    {
         "url": "https://ria.ru/20241203/nauka-1986882749.html",
         "category": "science"
     },
@@ -25980,10 +25680,6 @@
         "category": "science"
     },
     {
-        "url": "https://ria.ru/20250205/mazut-1997395825.html",
-        "category": "science"
-    },
-    {
         "url": "https://ria.ru/20241221/potok-1990656606.html",
         "category": "science"
     },
@@ -25997,10 +25693,6 @@
     },
     {
         "url": "https://ria.ru/20250115/planety-1993758394.html",
-        "category": "science"
-    },
-    {
-        "url": "https://ria.ru/20250204/ssha-1997315185.html",
         "category": "science"
     },
     {
@@ -27508,10 +27200,6 @@
         "category": "science"
     },
     {
-        "url": "https://ri.ria.ru/20250205/nauka-1997139228.html",
-        "category": "science"
-    },
-    {
         "url": "https://ria.ru/20240501/nauka-1943289237.html",
         "category": "science"
     },
@@ -28009,10 +27697,6 @@
     },
     {
         "url": "https://ria.ru/20241203/nauka-1986235524.html",
-        "category": "science"
-    },
-    {
-        "url": "https://ria.ru/20250204/okean-1997223777.html",
         "category": "science"
     },
     {
@@ -29124,10 +28808,6 @@
         "category": "culture"
     },
     {
-        "url": "https://ria.ru/20250201/semenovskij-1996823718.html",
-        "category": "culture"
-    },
-    {
         "url": "https://ria.ru/20240620/voytes-1954376006.html",
         "category": "culture"
     },
@@ -29824,10 +29504,6 @@
         "category": "culture"
     },
     {
-        "url": "https://ria.ru/20250203/mikhalkov-1997188322.html",
-        "category": "culture"
-    },
-    {
         "url": "https://ria.ru/20240627/kobbs-1955740442.html",
         "category": "culture"
     },
@@ -29961,10 +29637,6 @@
     },
     {
         "url": "https://ria.ru/20241001/dobrynin-1975715024.html",
-        "category": "culture"
-    },
-    {
-        "url": "https://ria.ru/20250128/kologrivyy-1995975016.html",
         "category": "culture"
     },
     {
@@ -30240,10 +29912,6 @@
         "category": "culture"
     },
     {
-        "url": "https://ria.ru/20250121/kharatyan-1994744700.html",
-        "category": "culture"
-    },
-    {
         "url": "https://ria.ru/20240925/tsirk-1974669188.html",
         "category": "culture"
     },
@@ -30269,10 +29937,6 @@
     },
     {
         "url": "https://ria.ru/20241117/simonyan-1984292626.html",
-        "category": "culture"
-    },
-    {
-        "url": "https://ria.ru/20250131/kartina-1996675182.html",
         "category": "culture"
     },
     {
@@ -30512,10 +30176,6 @@
         "category": "culture"
     },
     {
-        "url": "https://ria.ru/20250131/akter-1996559950.html",
-        "category": "culture"
-    },
-    {
         "url": "https://ria.ru/20241016/egipet-1978256673.html",
         "category": "culture"
     },
@@ -30601,10 +30261,6 @@
     },
     {
         "url": "https://ria.ru/20240801/levitin-1963538417.html",
-        "category": "culture"
-    },
-    {
-        "url": "https://ria.ru/20250114/putin-1993725634.html",
         "category": "culture"
     },
     {
@@ -30853,10 +30509,6 @@
     },
     {
         "url": "https://ria.ru/20250110/dobrovolskaya-1993203549.html",
-        "category": "culture"
-    },
-    {
-        "url": "https://ria.ru/20250127/yankovskiy-1995709905.html",
         "category": "culture"
     },
     {
@@ -31376,19 +31028,11 @@
         "category": "culture"
     },
     {
-        "url": "https://ria.ru/20250124/gazmanov-1995288641.html",
-        "category": "culture"
-    },
-    {
         "url": "https://ria.ru/20240614/shaman-1953040615.html",
         "category": "culture"
     },
     {
         "url": "https://ria.ru/20241013/mishustin-1977815965.html",
-        "category": "culture"
-    },
-    {
-        "url": "https://ria.ru/20250116/karta-1843996003.html",
         "category": "culture"
     },
     {
@@ -31948,10 +31592,6 @@
         "category": "culture"
     },
     {
-        "url": "https://ria.ru/20250115/nemoljaev-1993895045.html",
-        "category": "culture"
-    },
-    {
         "url": "https://ria.ru/20241206/film-1987836447.html",
         "category": "culture"
     },
@@ -32101,10 +31741,6 @@
     },
     {
         "url": "https://ria.ru/20241225/lgov-1991340473.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250205/sretenie_gospodne-1844706150.html",
         "category": "religion"
     },
     {
@@ -32381,10 +32017,6 @@
     },
     {
         "url": "https://ria.ru/20240919/mir-1973650852.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250203/paskha-1784063287.html",
         "category": "religion"
     },
     {
@@ -32820,10 +32452,6 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250204/subbota-1833322217.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20250117/kreschenie-1994238365.html",
         "category": "religion"
     },
@@ -33065,10 +32693,6 @@
     },
     {
         "url": "https://ria.ru/20240921/vystavka-1974005721.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250203/post-1850387242.html",
         "category": "religion"
     },
     {
@@ -34316,10 +33940,6 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250130/gosduma-1996385103.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20241121/den-1984892372.html",
         "category": "religion"
     },
@@ -34372,10 +33992,6 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250113/svo-1993464585.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20240715/pravoslavnyy-1881267316.html",
         "category": "religion"
     },
@@ -34397,10 +34013,6 @@
     },
     {
         "url": "https://ria.ru/20241101/oshibka-1981400056.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250120/maslenitsa-1848807705.html",
         "category": "religion"
     },
     {
@@ -34573,10 +34185,6 @@
     },
     {
         "url": "https://ria.ru/20241101/mif-1981364588.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250121/grekh-1994808068.html",
         "category": "religion"
     },
     {
@@ -34920,15 +34528,7 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250205/krganov-1997401884.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20250129/khramy-1996158042.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250205/aprel-1850395199.html",
         "category": "religion"
     },
     {
@@ -35188,10 +34788,6 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250130/nikab-1996476488.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20241118/nagrada-1984399243.html",
         "category": "religion"
     },
@@ -35384,10 +34980,6 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250117/kreschenie-1994224975.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20240911/iliy-1972142853.html",
         "category": "religion"
     },
@@ -35441,10 +35033,6 @@
     },
     {
         "url": "https://ria.ru/20240701/nikab-1956660594.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250120/antisemit-1994633883.html",
         "category": "religion"
     },
     {
@@ -35684,10 +35272,6 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250119/kreschenie-1994447622.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20240925/peterkirkhe-1974606558.html",
         "category": "religion"
     },
@@ -35724,15 +35308,7 @@
         "category": "religion"
     },
     {
-        "url": "https://ria.ru/20250130/migratsiya-1996337024.html",
-        "category": "religion"
-    },
-    {
         "url": "https://ria.ru/20250126/tatyanin_den-1844440617.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250119/kreschenie-1994433040.html",
         "category": "religion"
     },
     {
@@ -35745,10 +35321,6 @@
     },
     {
         "url": "https://ria.ru/20241215/mitropolit-1989343545.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250107/post-1909431934.html",
         "category": "religion"
     },
     {
@@ -35921,10 +35493,6 @@
     },
     {
         "url": "https://ria.ru/20250201/mishustin-1996764290.html",
-        "category": "religion"
-    },
-    {
-        "url": "https://ria.ru/20250128/rpts-1995949981.html",
         "category": "religion"
     },
     {
