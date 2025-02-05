@@ -107,6 +107,32 @@ def get_with_backoff(url, headers, max_retries=5, backoff_factor=1):
             return None
     return response
 
+def extract_full_text(soup):
+    # Попытка найти контейнер с основным текстом
+    container = soup.find("div", class_="article__body")
+    if container:
+        text_parts = []
+        for tag in container.find_all(["div", "p"]):
+            classes = tag.get("class", [])
+            # Собираем, если элемент имеет один из нужных классов или является простым абзацем
+            if ("article__text" in classes or "article__quote" in classes or tag.name == "p") and tag.get_text(strip=True):
+                text_parts.append(tag.get_text(" ", strip=True))
+        if text_parts:
+            return "\n".join(text_parts)
+    # Если контейнер не найден – fallback: собрать все блоки после заголовка
+    header = soup.select_one("h1.article__title")
+    if not header:
+        header = soup.find("h1")
+    text_parts = []
+    for tag in header.find_all_next():
+        # Если встретили специальный якорный элемент (например, с классом "article__anchor"), завершаем сбор
+        if tag.name == "a" and tag.get("class") and "article__anchor" in tag.get("class"):
+            break
+        classes = tag.get("class", [])
+        if ("article__text" in classes or "article__quote" in classes or tag.name == "p") and tag.get_text(strip=True):
+            text_parts.append(tag.get_text(" ", strip=True))
+    return "\n".join(text_parts)
+
 def parse_article(article_url, category):
     logger.debug("Парсинг статьи: %s", article_url)
     headers = {
@@ -138,19 +164,18 @@ def parse_article(article_url, category):
         return None
 
     try:
-        text_element = soup.select_one("div.article__text")
-        text = text_element.get_text(strip=True) if text_element else ""
+        text = extract_full_text(soup)
     except Exception as e:
-        logger.error("Ошибка при извлечении текста для %s: %s", article_url, e)
+        logger.error("Ошибка при извлечении полного текста для %s: %s", article_url, e)
         text = ""
-    
+
     try:
         tags_elements = soup.select("div.article__tags a")
         tags = ", ".join([tag.get_text(strip=True) for tag in tags_elements]) if tags_elements else ""
     except Exception as e:
         logger.error("Ошибка при извлечении тегов для %s: %s", article_url, e)
         tags = ""
-    
+
     article_data = {
         "article_id": article_url,
         "title": title,
@@ -160,6 +185,7 @@ def parse_article(article_url, category):
     }
     logger.debug("Извлечены данные статьи: %s", article_data)
     return article_data
+
 
 def main():
     collected_links = []
@@ -198,9 +224,19 @@ def main():
         logging.info(f"Начинаем парсинг статьи {missing_links.index(link_item)+1}/{len(missing_links)}")
         return parse_article(url, category)
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        results = list(executor.map(worker, missing_links))
-    
+    results = []
+    hard_chunk_count = len(missing_links) // CHUNK_SIZE_ARTICLES
+    for idx in range(hard_chunk_count):
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            results += list(executor.map(worker, missing_links[idx*CHUNK_SIZE_ARTICLES:(idx+1)*CHUNK_SIZE_ARTICLES]))
+            save_articles(collected_articles + results)
+            logging.info(f"Сохраняем {len(results)}/{len(missing_links)} статей.")
+    if hard_chunk_count != len(missing_links) / CHUNK_SIZE_ARTICLES:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            results += list(executor.map(worker, missing_links[hard_chunk_count*CHUNK_SIZE_ARTICLES:-1]))
+            save_articles(collected_articles + results)
+            logging.info(f"Сохраняем {len(results)}/{len(missing_links)} статей.")
+
     new_articles = [article for article in results if article is not None]
     logger.info("Спаршено %d новых статей", len(new_articles))
     collected_articles.extend(new_articles)
