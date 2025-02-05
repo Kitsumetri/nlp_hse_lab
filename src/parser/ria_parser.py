@@ -1,12 +1,14 @@
 import json
 import time
 import logging
+import os
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+import concurrent.futures
 
 # ========== Конфигурационные переменные ==========
 TARGET_LINKS = 1000
@@ -79,7 +81,7 @@ def collect_links_for_category(category_url, category_name, min_links=1000):
         try:
             more_button = driver.find_element(By.CSS_SELECTOR, "div.list-more.color-btn-second-hover")
             driver.execute_script("arguments[0].click();", more_button)
-            time.sleep(2)
+            time.sleep(1)
         except Exception as e:
             logger.info("Кнопка 'Еще 20 материалов' не найдена для категории '%s'. Error: %s", category_name, e)
             break
@@ -99,7 +101,6 @@ def parse_article(article_url, category):
     try:
         # Попытка извлечь заголовок по селектору "h1.article__title"
         title_element = soup.select_one("h1.article__title")
-        # Если не найден, fallback к первому тегу <h1>
         if not title_element:
             title_element = soup.find("h1")
         title = title_element.get_text(strip=True) if title_element else ""
@@ -134,24 +135,44 @@ def parse_article(article_url, category):
 def main():
     collected_links = []
     collected_articles = []
-    # Сбор ссылок для всех категорий
-    for cat in CATEGORIES:
-        logger.info("Начало сбора ссылок для категории: %s", cat["category"])
-        cat_links = collect_links_for_category(cat["url"], cat["category"], min_links=TARGET_LINKS)
-        logger.info("Для категории %s собрано %d ссылок", cat["category"], len(cat_links))
-        collected_links.extend(cat_links)
-        save_links(collected_links)
-    
-    logger.info("Начало парсинга статей. Всего ссылок: %d", len(collected_links))
-    for idx, item in enumerate(collected_links, start=1):
-        url = item.get("url")
-        category = item.get("category")
-        article_data = parse_article(url, category)
-        if article_data:
-            collected_articles.append(article_data)
-            if idx % CHUNK_SIZE_ARTICLES == 0:
-                save_articles(collected_articles)
-        time.sleep(0.5)
+
+    # 1) Работа с файлом ria_links.json
+    if os.path.exists(LINKS_OUTPUT_FILE) and os.path.getsize(LINKS_OUTPUT_FILE) > 0:
+        with open(LINKS_OUTPUT_FILE, "r", encoding="utf-8") as f:
+            collected_links = json.load(f)
+        logger.info("Считано %d ссылок из %s", len(collected_links), LINKS_OUTPUT_FILE)
+    else:
+        for cat in CATEGORIES:
+            logger.info("Начало сбора ссылок для категории: %s", cat["category"])
+            cat_links = collect_links_for_category(cat["url"], cat["category"], min_links=TARGET_LINKS)
+            logger.info("Для категории %s собрано %d ссылок", cat["category"], len(cat_links))
+            collected_links.extend(cat_links)
+            save_links(collected_links)
+
+    # 2) Работа с файлом ria_articles.json
+    if os.path.exists(ARTICLES_OUTPUT_FILE) and os.path.getsize(ARTICLES_OUTPUT_FILE) > 0:
+        with open(ARTICLES_OUTPUT_FILE, "r", encoding="utf-8") as f:
+            collected_articles = json.load(f)
+        logger.info("Считано %d статей из %s", len(collected_articles), ARTICLES_OUTPUT_FILE)
+    else:
+        collected_articles = []
+
+    # Определяем ссылки, по которым статей ещё нет (по article_id == url)
+    existing_article_ids = {article["article_id"] for article in collected_articles}
+    missing_links = [link for link in collected_links if link["url"] not in existing_article_ids]
+    logger.info("Будет спаршено %d статей из %d ссылок", len(missing_links), len(collected_links))
+
+    # Параллельный сбор статей для ускорения
+    def worker(link_item):
+        url = link_item.get("url")
+        category = link_item.get("category")
+        return parse_article(url, category)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        results = list(executor.map(worker, missing_links))
+
+    new_articles = [article for article in results if article is not None]
+    collected_articles.extend(new_articles)
     save_articles(collected_articles)
 
 if __name__ == "__main__":
