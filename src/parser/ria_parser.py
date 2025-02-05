@@ -170,6 +170,7 @@ def main():
     def worker(link_item):
         url = link_item.get("url")
         category = link_item.get("category")
+        logging.info(f"Начинаем парсинг статьи {missing_links.index(link_item)+1}/{len(missing_links)}")
         return parse_article(url, category)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
