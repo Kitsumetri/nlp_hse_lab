@@ -45,6 +45,7 @@ driver = webdriver.Chrome(options=chrome_options)
 wait = WebDriverWait(driver, 20)
 
 def scroll_page():
+    logger.debug("Прокрутка страницы вниз.")
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(1)
 
@@ -59,6 +60,7 @@ def save_articles(articles):
     logger.info("Обновлено статей: %d в %s", len(articles), ARTICLES_OUTPUT_FILE)
 
 def collect_links_for_category(category_url, category_name, min_links=1000):
+    logger.debug("Начало сбора ссылок для категории '%s' по URL: %s", category_name, category_url)
     links_data = set()
     driver.get(category_url)
     time.sleep(1)
@@ -70,16 +72,17 @@ def collect_links_for_category(category_url, category_name, min_links=1000):
                 url = elem.get_attribute("href")
                 if url:
                     links_data.add(url)
-            logger.info("Для категории '%s' собрано ссылок: %d", category_name, len(links_data))
+            logger.debug("Сейчас для категории '%s' собрано ссылок: %d", category_name, len(links_data))
         except Exception as e:
-            logger.error("Ошибка при извлечении ссылок: %s", e)
-        # Сохранение в реальном времени
+            logger.error("Ошибка при извлечении ссылок для категории '%s': %s", category_name, e)
         current_links = [{"url": url, "category": category_name} for url in links_data]
         save_links(current_links)
         if len(links_data) >= min_links:
+            logger.info("Достигнут лимит ссылок для категории '%s': %d", category_name, len(links_data))
             break
         try:
             more_button = driver.find_element(By.CSS_SELECTOR, "div.list-more.color-btn-second-hover")
+            logger.debug("Нажатие кнопки 'Еще 20 материалов' для категории '%s'.", category_name)
             driver.execute_script("arguments[0].click();", more_button)
             time.sleep(1)
         except Exception as e:
@@ -88,6 +91,7 @@ def collect_links_for_category(category_url, category_name, min_links=1000):
     return [{"url": url, "category": category_name} for url in links_data]
 
 def parse_article(article_url, category):
+    logger.debug("Парсинг статьи: %s", article_url)
     try:
         response = requests.get(article_url, headers={'User-Agent': 'Mozilla/5.0'})
         if response.status_code != 200:
@@ -99,9 +103,9 @@ def parse_article(article_url, category):
         return None
 
     try:
-        # Попытка извлечь заголовок по селектору "h1.article__title"
         title_element = soup.select_one("h1.article__title")
         if not title_element:
+            logger.debug("Элемент 'h1.article__title' не найден, используем fallback поиск по <h1> для %s", article_url)
             title_element = soup.find("h1")
         title = title_element.get_text(strip=True) if title_element else ""
     except Exception as e:
@@ -129,7 +133,7 @@ def parse_article(article_url, category):
         "tags": tags,
         "text": text
     }
-    logger.debug("Извлечены данные статьи: %s", article_data)
+    logger.debug(f"Извлечены данные статьи: {article_data}")
     return article_data
 
 def main():
@@ -145,7 +149,7 @@ def main():
         for cat in CATEGORIES:
             logger.info("Начало сбора ссылок для категории: %s", cat["category"])
             cat_links = collect_links_for_category(cat["url"], cat["category"], min_links=TARGET_LINKS)
-            logger.info("Для категории %s собрано %d ссылок", cat["category"], len(cat_links))
+            logger.info("Для категории '%s' собрано %d ссылок", cat["category"], len(cat_links))
             collected_links.extend(cat_links)
             save_links(collected_links)
 
@@ -157,10 +161,10 @@ def main():
     else:
         collected_articles = []
 
-    # Определяем ссылки, по которым статей ещё нет (по article_id == url)
+    # Определяем, какие ссылки ещё не спарсены (по article_id == url)
     existing_article_ids = {article["article_id"] for article in collected_articles}
     missing_links = [link for link in collected_links if link["url"] not in existing_article_ids]
-    logger.info("Будет спаршено %d статей из %d ссылок", len(missing_links), len(collected_links))
+    logger.info("Будет спаршено %d новых статей из %d ссылок", len(missing_links), len(collected_links))
 
     # Параллельный сбор статей для ускорения
     def worker(link_item):
@@ -170,8 +174,9 @@ def main():
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         results = list(executor.map(worker, missing_links))
-
+    
     new_articles = [article for article in results if article is not None]
+    logger.info("Спаршено %d новых статей", len(new_articles))
     collected_articles.extend(new_articles)
     save_articles(collected_articles)
 
