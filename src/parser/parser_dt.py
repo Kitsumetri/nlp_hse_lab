@@ -7,12 +7,12 @@ from bs4 import BeautifulSoup
 import regex as re
 
 # Updated settings
-# categories = ['world', 'business', 'technology', 'markets']
-categories = ['markets']
+# categories = ['world', 'business', 'technology', 'markets', 'legal']
+categories = ['legal']
 articles_per_category = 1000
 articles_per_request = 20
-output_links_file = 'data/reuters_links.jsonl'
-output_articles_file = 'data/reuters_articles.json'
+output_links_file = 'data/reuters_links_legal.jsonl'
+output_articles_file = 'data/reuters_articles_legal.json'
 
 # Modern browser headers template
 HEADERS_TEMPLATE = {
@@ -132,24 +132,6 @@ class ReutersScraper:
         
         return ' '.join(clean_text)
 
-    # def _extract_tags_from_meta(self, soup):
-    #     """Improved tag extraction from multiple sources"""
-    #     # From keywords meta
-    #     meta_keywords = soup.find('meta', {'name': 'keywords'})
-    #     if meta_keywords:
-    #         return [tag.strip() for tag in meta_keywords.get('content', '').split(',')]
-        
-    #     # From JSON-LD data
-    #     script = soup.find('script', type='application/ld+json')
-    #     if script:
-    #         try:
-    #             data = json.loads(script.string)
-    #             return data.get('keywords', '').split(',')
-    #         except json.JSONDecodeError:
-    #             pass
-        
-    #     return []
-
     def parse_articles(self, a, b):
         """Updated parsing with proper text/tag handling"""
         articles_data = []
@@ -207,8 +189,7 @@ class ReutersScraper:
             r'\s*Sign up here\..*$',
             r'\s*Our Standards:.*$',
             r'\s*Reporting by.*$',
-            r'\s*Editing by.*$',
-            r'\s*Thomson Reuters.*$'
+            r'\s*Editing by.*$'
         ]
         for pattern in patterns:
             text = re.sub(pattern, '', text, flags=re.DOTALL|re.IGNORECASE)
