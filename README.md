@@ -1,3 +1,9 @@
+---
+title: nlp_hse
+app_file: app.py
+sdk: gradio
+sdk_version: 5.16.0
+---
 # nlp_hse_lab
 
 ## Quick Start

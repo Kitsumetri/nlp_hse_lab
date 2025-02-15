@@ -18,3 +18,4 @@ gradio
 unsloth
 flash-attn
 trl
+scipy
