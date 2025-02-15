@@ -4,3 +4,8 @@ catboost_info
 .lecture_materials
 pretrained
 vectorized_data
+unsloth_compiled_cache
+_unsloth_temporary_saved_buffers
+outputs_qwen
+.gradio
+qwen2_5_lora_sft_model
